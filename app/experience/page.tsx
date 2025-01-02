@@ -15,7 +15,7 @@ export default function Experience() {
         <ScrollAnimation className="max-w-2xl mx-auto text-center mb-12">
           <h1 className="text-2xl mb-4">
             {"<"} Here, you can know me a little more and see my whole experience as a{" "}
-            <span className="text-primary">Front-End Software Engineer</span> {"/>"}
+            <span className="text-primary">Software Engineer</span> {"/>"}
           </h1>
           <Button asChild variant="outline">
             <Link href="/cv.pdf">Download CV</Link>

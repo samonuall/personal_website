@@ -35,9 +35,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
           </div>
           <h3 className="font-medium mb-4 text-secondary">{experience.company}</h3>
           <ul className="text-sm text-muted-foreground list-disc list-inside">
-            {experience.description.map((point, index) => (
-              <li key={index} className="mb-1">{point}</li>
-            ))}
+            Click to learn more
           </ul>
         </CardContent>
       </Card>

@@ -13,25 +13,25 @@ export const projects: Project[] = [
     id: "1",
     title: "Face-to-Sketch Conditional GAN",
     description: "Built a generative image model based on a research paper, improving sketch quality by pretraining on a larger face image dataset.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/gan_gif.gif",
     technologies: ["Python", "PyTorch", "CUDA"],
-    github: "https://github.com/samonuall/face-to-sketch-gan"
+    link: "https://www.kaggle.com/code/samonuallain/389-final-project-second-attempt"
   },
   {
     id: "2",
     title: "Reducing Echo Chambers in Collaborative Filtering Models",
     description: "Preprocessed user ratings of books and used graph algorithms to create a prototype model for reducing echo chambers.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/echo_chamber.jpg",
     technologies: ["Python", "Pandas", "Networkx"],
-    github: "https://github.com/samonuall/echo-chamber-reduction"
+    github: "https://github.com/samonuall/h311_project"
   },
   {
     id: "3",
     title: "Fine-Tuning LLMs for System Initiative Prediction",
     description: "Quantized and fine-tuned Llama-7b on tens of thousands of MS Dialog conversations, presenting findings at a final poster session.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/sip_poster.jpg",
     technologies: ["Python", "Pandas", "HuggingFace API"],
-    github: "https://github.com/samonuall/llm-system-initiative"
+    link: "https://colab.research.google.com/drive/1Jud-_r0wpBRpk6IyCk5PfVVZCgFxPi3Z?usp=sharing"
   }
 ];
 

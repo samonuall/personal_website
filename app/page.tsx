@@ -21,13 +21,13 @@ export default function Home() {
                 Hi, I&apos;m Sam O&apos;Nuallain
               </h1>
               <p className="text-xl text-muted-foreground">
-                I&apos;m a Computer Science and Economics double major at the University of Massachusetts Amherst, 
-                with a strong interest in AI and machine learning. I&apos;m pursuing a BS in Computer Science 
-                (expected graduation: December 2024) and will be starting my MS in Computer Science in February 2025.
+                I&apos;m a Computer Science student at the University of Massachusetts Amherst, 
+                with a strong interest in AI and machine learning. I&apos;m pursuing a MS in Computer Science 
+                (expected graduation: May 2026) and am interning at Klaviyo as a Software Engineer this summer.
               </p>
               <div className="flex gap-4">
                 <Button asChild variant="default">
-                  <Link href="/cv.pdf">Download CV</Link>
+                  <Link href="/cv.pdf" target="_blank">Download CV</Link>
                 </Button>
                 <Button asChild variant="outline">
                   <Link href="/experience">See experiences</Link>

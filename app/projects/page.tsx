@@ -18,7 +18,7 @@ export default function Projects() {
             <span className="text-primary">experiments</span> {"/>"}
           </h1>
           <Button asChild variant="outline">
-            <Link href="https://github.com/yourusername" target="_blank">
+            <Link href="https://github.com/samonuall" target="_blank">
               View GitHub Profile
             </Link>
           </Button>
