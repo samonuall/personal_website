@@ -2,15 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { ProjectCard } from '@/components/project-card'
 import '@testing-library/jest-dom'
 
-// Mock the next/image component since it doesn't work in test environment
-jest.mock('next/image', () => ({
-  __esModule: true,
-  default: (props: any) => {
-    // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
-    return <img {...props} />
-  },
-}))
-
 // Create a mock project object that matches the Project interface
 const mockProject = {
   id: '1',
@@ -123,5 +114,10 @@ describe('ProjectCard Component', () => {
     
     // Dialog should not be visible anymore
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  // test test
+  it('reeturns false', () => {
+    expect(false).toBe(true)
   })
 }) 
