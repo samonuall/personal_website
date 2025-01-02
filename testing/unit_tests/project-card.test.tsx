@@ -115,9 +115,4 @@ describe('ProjectCard Component', () => {
     // Dialog should not be visible anymore
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
-
-  // test test
-  it('reeturns false', () => {
-    expect(false).toBe(true)
-  })
 }) 
