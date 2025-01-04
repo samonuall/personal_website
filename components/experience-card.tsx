@@ -8,20 +8,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { useState } from "react"
+import { forwardRef, useState } from "react"
 
 interface ExperienceCardProps {
   experience: Experience
 }
 
-export function ExperienceCard({ experience }: ExperienceCardProps) {
+// TODO: change so that ref points to the card actually
+export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({experience, ...props}, ref) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <>
+      <>
       <Card
         className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-border/50 bg-card"
         onClick={() => setIsOpen(true)}
+        ref={ref}
       >
         <CardHeader>
           <CardTitle className="font-normal text-primary">{experience.title}</CardTitle>
@@ -61,4 +63,5 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
     </>
   )
 }
+)
 
