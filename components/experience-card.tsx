@@ -15,7 +15,7 @@ interface ExperienceCardProps {
 }
 
 // TODO: change so that ref points to the card actually
-export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({experience, ...props}, ref) => {
+const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({experience}, ref) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -65,3 +65,5 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
 }
 )
 
+ExperienceCard.displayName = 'ExperienceCard'
+export default ExperienceCard;
