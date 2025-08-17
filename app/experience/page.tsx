@@ -3,10 +3,8 @@
 import { Nav } from "@/components/nav"
 import { ExperienceCard } from "@/components/experience-card"
 import { experiences } from "@/data/experiences"
-import { Button } from "@/components/ui/button"
 import { ScrollAnimation } from "@/components/scroll-animation"
 import { BackgroundPattern } from "@/components/background-pattern"
-import Link from "next/link"
 import { useEffect, useRef } from "react"
 
 export default function Experience() {
