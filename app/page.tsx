@@ -24,7 +24,7 @@ export default function Home() {
               <p className="text-xl text-muted-foreground">
                 I&apos;m a Computer Science student at the University of Massachusetts Amherst, 
                 with a strong interest in AI and machine learning. I&apos;m pursuing a MS in Computer Science 
-                (expected graduation: May 2026) and am interning at Klaviyo as a Software Engineer this summer.
+                (expected graduation: May 2026) and am looking for full-time roles starting Summer 26!
               </p>
               <div className="flex gap-4">
                 <Button asChild variant="outline">
