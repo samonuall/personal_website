@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ExperienceSlider } from "@/components/experience-slider"
+import { ProjectSlider } from "@/components/project-slider"
 import { Nav } from "@/components/nav"
 import { TechnologiesGrid } from "@/components/technologies-grid"
 import { SocialLinks } from "@/components/social-links"
@@ -26,11 +27,11 @@ export default function Home() {
                 (expected graduation: May 2026) and am interning at Klaviyo as a Software Engineer this summer.
               </p>
               <div className="flex gap-4">
-                <Button asChild variant="default">
-                  <Link href="/cv.pdf" target="_blank">Download CV</Link>
-                </Button>
                 <Button asChild variant="outline">
                   <Link href="/experience">See experiences</Link>
+                </Button>
+                <Button asChild variant="default">
+                  <Link href="/projects">View projects</Link>
                 </Button>
               </div>
             </div>
@@ -50,6 +51,12 @@ export default function Home() {
           <h2 className="text-3xl mb-8 text-secondary">Experience</h2>
           <p className="text-muted-foreground mb-6">At a glance</p>
           <ExperienceSlider />
+        </ScrollAnimation>
+
+        <ScrollAnimation className="mb-24" delay={300}>
+          <h2 className="text-3xl mb-8 text-secondary">Projects</h2>
+          <p className="text-muted-foreground mb-6">Featured work</p>
+          <ProjectSlider />
         </ScrollAnimation>
 
         <ScrollAnimation className="mb-24" delay={400}>

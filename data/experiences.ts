@@ -10,6 +10,19 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: "0",
+    title: "Software Engineering Intern",
+    company: "Klaviyo",
+    contractType: "Internship",
+    location: "Boston, MA",
+    dateRange: "June 2025 - August 2025",
+    description: [
+      "Shipped a full-stack analytics feature (Python, React, AWS) for push notifications, adopted by 400+ companies and generating over 5,000 reports in two months.",
+      "Enriched analytics reports with 5+ new key data attributes by orchestrating parallel public API calls, providing critical context for Klaviyo MCP server clients.",
+      "Prototyped advanced features including a vector search index of Klaviyo help docs and data visualization UI for the Klaviyo MCP server, leading to their direct addition to the company's AI product roadmap."
+    ]
+  },
+  {
     id: "1",
     title: "Researcher",
     company: "Center for Intelligent Information Retrieval",
@@ -38,7 +51,7 @@ export const experiences: Experience[] = [
   {
     id: "3",
     title: "Software Engineering Intern",
-    company: "Lockheed Martin Space",
+    company: "Space",
     contractType: "Internship",
     location: "Denver, CO",
     dateRange: "June 2023 - August 2023",

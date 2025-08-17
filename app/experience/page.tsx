@@ -43,9 +43,6 @@ export default function Experience() {
             {"<"} Here, you can see my experience as a {" "}
             <span className="text-primary">Software Engineer</span> {"/>"}
           </h1>
-          <Button asChild variant="outline">
-            <Link href="/cv.pdf" target="_blank">Download CV</Link>
-          </Button>
         </ScrollAnimation>
 
         <div className="grid gap-6 max-w-4xl mx-auto">

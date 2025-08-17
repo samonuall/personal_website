@@ -32,7 +32,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover"
+            className="object-contain p-4"
           />
         </div>
         <CardHeader>
@@ -56,7 +56,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover"
+                className="object-contain p-4"
               />
             </div>
             <p className="text-muted-foreground">{project.description}</p>
