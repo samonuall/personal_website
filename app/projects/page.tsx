@@ -48,7 +48,12 @@ export default function Projects() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <ScrollAnimation key={project.id} delay={index * 100}>
+            <ScrollAnimation 
+              key={project.id} 
+              delay={Math.min(index * 50, 200)}
+              threshold={0.05}
+              rootMargin="100px 0px"
+            >
               <div ref={el => {
                 projectRefs.current[Number(project.id)] = el;
                 return;

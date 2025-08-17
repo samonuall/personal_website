@@ -47,7 +47,12 @@ export default function Experience() {
 
         <div className="grid gap-6 max-w-4xl mx-auto">
           {experiences.map((experience, index) => (
-            <ScrollAnimation key={experience.id} delay={index * 100}>
+            <ScrollAnimation 
+              key={experience.id} 
+              delay={Math.min(index * 50, 200)}
+              threshold={0.05}
+              rootMargin="100px 0px"
+            >
                 <ExperienceCard 
                   experience={experience} 
                   ref={el => {

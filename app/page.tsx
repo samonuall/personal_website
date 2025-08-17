@@ -15,7 +15,7 @@ export default function Home() {
       <BackgroundPattern />
       <Nav />
       <main className="container mx-auto px-4 py-12">
-        <ScrollAnimation delay={0}>
+        <ScrollAnimation delay={0} rootMargin="100px 0px">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
             <div className="grid gap-6">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl text-primary">
@@ -47,19 +47,17 @@ export default function Home() {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation className="mb-24" delay={200}>
+        <ScrollAnimation className="mb-24" delay={100} rootMargin="150px 0px">
           <h2 className="text-3xl mb-8 text-secondary">Experience</h2>
-          <p className="text-muted-foreground mb-6">At a glance</p>
           <ExperienceSlider />
         </ScrollAnimation>
 
-        <ScrollAnimation className="mb-24" delay={300}>
+        <ScrollAnimation className="mb-24" delay={150} rootMargin="150px 0px">
           <h2 className="text-3xl mb-8 text-secondary">Projects</h2>
-          <p className="text-muted-foreground mb-6">Featured work</p>
           <ProjectSlider />
         </ScrollAnimation>
 
-        <ScrollAnimation className="mb-24" delay={400}>
+        <ScrollAnimation className="mb-24" delay={200} rootMargin="150px 0px">
           <TechnologiesGrid />
         </ScrollAnimation>
       </main>
