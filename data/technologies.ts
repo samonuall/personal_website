@@ -10,6 +10,7 @@ export const technologies: Technology[] = [
   { name: "JavaScript", icon: "/icons/javascript.svg", category: "languages" },
   { name: "SQL", icon: "/icons/sql.svg", category: "languages" },
   { name: "React", icon: "/icons/react.svg", category: "frameworks" },
+  { name: "FastAPI", icon: "/icons/FastAPI.svg", category: "frameworks" },
   { name: "PyTorch", icon: "/icons/pytorch.svg", category: "ml" },
   { name: "HuggingFace", icon: "/icons/huggingface.svg", category: "ml" },
   { name: "Sklearn", icon: "/icons/sklearn.svg", category: "ml" },
