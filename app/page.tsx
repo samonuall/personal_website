@@ -8,10 +8,12 @@ import { ScrollAnimation } from "@/components/scroll-animation"
 import { BackgroundPattern } from "@/components/background-pattern"
 import Image from "next/image"
 import Link from "next/link"
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Analytics/>
       <BackgroundPattern />
       <Nav />
       <main className="container mx-auto px-4 py-12">

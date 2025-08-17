@@ -8,6 +8,7 @@ import { ScrollAnimation } from "@/components/scroll-animation"
 import { BackgroundPattern } from "@/components/background-pattern"
 import Link from "next/link"
 import { useEffect, useRef } from "react"
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Projects() {
   const projectRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -31,6 +32,7 @@ export default function Projects() {
   }, [])
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Analytics />
       <BackgroundPattern />
       <Nav />
       <main className="container mx-auto px-4 py-12">

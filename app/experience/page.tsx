@@ -6,6 +6,7 @@ import { experiences } from "@/data/experiences"
 import { ScrollAnimation } from "@/components/scroll-animation"
 import { BackgroundPattern } from "@/components/background-pattern"
 import { useEffect, useRef } from "react"
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Experience() {
   const experienceRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -33,6 +34,7 @@ export default function Experience() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Analytics />
       <BackgroundPattern />
       <Nav />
       <main className="container mx-auto px-4 py-12">
