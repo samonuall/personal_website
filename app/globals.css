@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,25 +6,25 @@
  
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 220 18% 13%;
+    --background: 210 40% 98%; /* #fbfbf9 */
+    --foreground: 220 84% 8%; /* #0f1724 */
     --card: 0 0% 100%;
-    --card-foreground: 220 18% 13%;
+    --card-foreground: 220 84% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 18% 13%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 160 84% 39%;
-    --secondary-foreground: 210 20% 98%;
+    --popover-foreground: 220 84% 8%;
+    --primary: 205 60% 36%; /* #1f6f8b */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 14 68% 62%; /* #e07a5f */
+    --secondary-foreground: 0 0% 100%;
     --muted: 220 14% 46%;
     --muted-foreground: 220 14% 46%;
-    --accent: 261 51% 63%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 162 45% 45%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 14% 46%;
-    --input: 220 14% 46%;
-    --ring: 217 91% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 205 60% 36%;
     --radius: 0.5rem;
   }
  
@@ -35,7 +35,7 @@
     --card-foreground: 210 20% 98%;
     --popover: 220 18% 13%;
     --popover-foreground: 210 20% 98%;
-    --primary: 217 91% 60%;
+    --primary: 205 60% 36%;
     --primary-foreground: 220 18% 13%;
     --secondary: 160 84% 39%;
     --secondary-foreground: 220 18% 13%;
@@ -47,7 +47,7 @@
     --destructive-foreground: 210 20% 98%;
     --border: 220 14% 46%;
     --input: 220 14% 46%;
-    --ring: 217 91% 60%;
+    --ring: 205 60% 36%;
   }
 }
  
