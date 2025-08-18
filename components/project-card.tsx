@@ -24,10 +24,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <>
       <Card
-        className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg overflow-hidden border border-border/50"
+        className="cursor-pointer transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl overflow-hidden border border-border/30 bg-card text-card-foreground rounded-lg"
         onClick={() => setIsOpen(true)}
       >
-        <div className="relative h-48 w-full">
+        <div className="relative h-48 w-full bg-gradient-to-b from-primary/5 to-transparent">
           <Image
             src={project.image}
             alt={project.title}
@@ -36,7 +36,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           />
         </div>
         <CardHeader>
-          <CardTitle className="font-normal">{project.title}</CardTitle>
+          <CardTitle className="font-normal text-primary">{project.title}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground line-clamp-3">
@@ -46,12 +46,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </Card>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-popover text-popover-foreground rounded-xl">
           <DialogHeader>
-            <DialogTitle className="font-normal">{project.title}</DialogTitle>
+            <DialogTitle className="font-normal text-primary">{project.title}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4">
-            <div className="relative h-64 w-full rounded-lg overflow-hidden">
+            <div className="relative h-64 w-full rounded-lg overflow-hidden bg-card">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -64,15 +64,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-1 bg-secondary rounded-full text-xs"
+                  className="px-3 py-1 bg-card/5 border border-border/20 rounded-full text-xs text-muted-foreground"
                 >
                   {tech}
                 </span>
               ))}
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3 items-center">
               {project.github && (
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="outline" size="sm" className="text-primary border-primary/30">
                   <Link href={project.github} target="_blank">
                     <Github className="w-4 h-4 mr-2" />
                     GitHub
@@ -80,7 +80,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 </Button>
               )}
               {project.link && (
-                <Button asChild size="sm">
+                <Button asChild variant="ghost" size="sm" className="text-primary">
                   <Link href={project.link} target="_blank">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Visit Project
@@ -89,7 +89,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               )}
 
               {project.id === '2' && (
-                <Button asChild size="sm" className="bg-gradient-to-r from-pink-500 via-yellow-400 to-indigo-500 text-white">
+                <Button asChild size="sm" className="bg-gradient-to-r from-primary to-indigo-500 text-white shadow-md">
                   <a href="/poker_bot_report.pdf" target="_blank" rel="noopener noreferrer">
                     <FileText className="w-4 h-4 mr-2" />
                     Open Report

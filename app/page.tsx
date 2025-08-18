@@ -19,30 +19,30 @@ export default function Home() {
       <main className="container mx-auto px-4 py-12">
         <ScrollAnimation delay={0} rootMargin="100px 0px">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
-            <div className="grid gap-6">
+            <div className="grid gap-6 bg-card/5 p-8 rounded-2xl shadow-lg">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl text-primary">
                 Hi, I&apos;m Sam O&apos;Nuallain
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-lg text-muted-foreground max-w-prose">
                 I&apos;m a Computer Science student at the University of Massachusetts Amherst, 
                 with a strong interest in AI and machine learning. I&apos;m pursuing a MS in Computer Science 
                 (expected graduation: May 2026) and am looking for full-time roles starting Summer 26!
               </p>
               <div className="flex gap-4">
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="text-primary border-primary/30">
                   <Link href="/experience">See experiences</Link>
                 </Button>
-                <Button asChild variant="default">
+                <Button asChild className="bg-gradient-to-r from-primary to-indigo-500 text-white">
                   <Link href="/projects">View projects</Link>
                 </Button>
               </div>
             </div>
-            <div className="relative aspect-square">
+            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl bg-card">
               <Image
                 src="/profile.jpg"
                 alt="Profile"
                 fill
-                className="object-cover rounded-2xl shadow-lg"
+                className="object-cover"
                 priority
               />
             </div>
@@ -50,12 +50,12 @@ export default function Home() {
         </ScrollAnimation>
 
         <ScrollAnimation className="mb-24" delay={100} rootMargin="150px 0px">
-          <h2 className="text-3xl mb-8 text-secondary">Experience</h2>
+          <h2 className="text-3xl mb-8 text-primary">Experience</h2>
           <ExperienceSlider />
         </ScrollAnimation>
 
         <ScrollAnimation className="mb-24" delay={150} rootMargin="150px 0px">
-          <h2 className="text-3xl mb-8 text-secondary">Projects</h2>
+          <h2 className="text-3xl mb-8 text-primary">Projects</h2>
           <ProjectSlider />
         </ScrollAnimation>
 
@@ -64,7 +64,7 @@ export default function Home() {
         </ScrollAnimation>
       </main>
 
-      <footer className="border-t relative bg-accent/10">
+      <footer className="border-t border-border/20 bg-popover/5">
         <div className="container mx-auto px-4 py-8">
           <div className="flex justify-between items-center">
             <p className="text-sm text-muted-foreground">

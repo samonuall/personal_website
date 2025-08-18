@@ -1,17 +1,17 @@
 export const theme = {
   colors: {
-    background: '#f0f4f8',
-    foreground: '#1a202c',
-    primary: '#3b82f6',
-    secondary: '#10b981',
-    accent: '#8b5cf6',
-    muted: '#64748b',
+    background: '#0b1220',
+    foreground: '#e6eef8',
+    primary: '#60a5fa',
+    secondary: '#34d399',
+    accent: 'linear-gradient(90deg,#7c3aed,#06b6d4)',
+    muted: '#94a3b8',
   },
   fonts: {
-    body: '"Inter", sans-serif',
-    heading: '"Poppins", sans-serif',
+    body: 'Inter, sans-serif',
+    heading: 'Poppins, sans-serif',
   },
-  borderRadius: '0.5rem',
-  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-};
+  borderRadius: '0.75rem',
+  boxShadow: '0 8px 20px rgba(2,6,23,0.6)',
+}
 

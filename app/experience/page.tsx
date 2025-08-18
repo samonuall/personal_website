@@ -52,14 +52,16 @@ export default function Experience() {
               threshold={0.05}
               rootMargin="100px 0px"
             >
-                <ExperienceCard 
-                  experience={experience} 
-                  ref={el => {
-                    experienceRefs.current[Number(experience.id)] = el;
-                    return;
-                  }
-                  }
-                />
+                <div className="bg-card/5 p-4 rounded-lg shadow-sm">
+                  <ExperienceCard 
+                    experience={experience} 
+                    ref={el => {
+                      experienceRefs.current[Number(experience.id)] = el;
+                      return;
+                    }
+                    }
+                  />
+                </div>
             </ScrollAnimation>
           ))}
         </div>
