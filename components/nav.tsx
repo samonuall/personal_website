@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { SocialLinks } from "./social-links"
+import ThemeToggle from './theme-toggle'
 
 export function Nav() {
   return (
@@ -15,6 +16,7 @@ export function Nav() {
           experience
         </Link>
         <SocialLinks />
+        <ThemeToggle />
       </div>
     </nav>
   )
