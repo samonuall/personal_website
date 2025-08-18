@@ -49,13 +49,13 @@ export function ProjectSlider() {
                 {project.technologies.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 bg-secondary rounded-full text-xs"
+                    className="px-2 py-1 bg-primary rounded-full text-xs text-primary-foreground"
                   >
                     {tech}
                   </span>
                 ))}
                 {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 bg-secondary rounded-full text-xs">
+                  <span className="px-2 py-1 bg-primary rounded-full text-xs text-primary-foreground">
                     +{project.technologies.length - 3}
                   </span>
                 )}
