@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink } from 'lucide-react'
+import { Github, ExternalLink, FileText } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -85,6 +85,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Visit Project
                   </Link>
+                </Button>
+              )}
+
+              {project.id === '2' && (
+                <Button asChild size="sm" className="bg-gradient-to-r from-pink-500 via-yellow-400 to-indigo-500 text-white">
+                  <a href="/poker_bot_report.pdf" target="_blank" rel="noopener noreferrer">
+                    <FileText className="w-4 h-4 mr-2" />
+                    Open Report
+                  </a>
                 </Button>
               )}
             </div>

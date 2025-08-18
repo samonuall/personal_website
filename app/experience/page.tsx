@@ -40,8 +40,7 @@ export default function Experience() {
       <main className="container mx-auto px-4 py-12">
         <ScrollAnimation className="max-w-2xl mx-auto text-center mb-12">
           <h1 className="text-2xl mb-4">
-            {"<"} Here, you can see my experience as a {" "}
-            <span className="text-primary">Software Engineer</span> {"/>"}
+            <span className="text-primary">Experiences</span>
           </h1>
         </ScrollAnimation>
 
