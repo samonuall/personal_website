@@ -19,8 +19,8 @@ export default function ThemeToggle() {
         document.documentElement.classList.remove('light')
         setIsLight(false)
       }
-    } catch (e) {
-      // ignore in SSR or privacy modes
+    } catch {
+        // ignore in SSR or privacy modes  
     }
   }, [])
 
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
         document.documentElement.classList.remove('light')
         localStorage.setItem('theme', 'dark')
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, [isLight])
