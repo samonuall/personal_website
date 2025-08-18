@@ -35,7 +35,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
           <div className="text-sm text-muted-foreground mb-2">
             {experience.dateRange} • {experience.location}
           </div>
-          <h3 className="font-medium mb-4 text-secondary">{experience.company}</h3>
+          <h3 className="font-medium mb-4 text-primary">{experience.company}</h3>
           <ul className="text-sm text-muted-foreground list-disc list-inside">
             Click to learn more
           </ul>
@@ -51,7 +51,7 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
             <div className="text-sm text-muted-foreground">
               {experience.dateRange} • {experience.location}
             </div>
-            <h3 className="font-medium text-secondary">{experience.company}</h3>
+            <h3 className="font-medium text-primary">{experience.company}</h3>
             <ul className="text-muted-foreground list-disc list-inside">
               {experience.description.map((point, index) => (
                 <li key={index} className="mb-2">{point}</li>
