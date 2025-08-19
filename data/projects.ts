@@ -19,7 +19,7 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "AI Poker Agent with Monte Carlo Tree Search",
+    title: "AI Poker Agent with Deep Reinforcement Learning",
     description: "Engineered a deep reinforcement learning agent for Texas Hold'em, leveraging a Monte Carlo Tree Search (MCTS) guided by a custom policy network to learn decision-making under uncertainty.",
     image: "/poker_image.png",
     technologies: ["Python", "PyTorch", "MCTS"],
