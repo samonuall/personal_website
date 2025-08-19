@@ -24,9 +24,8 @@ export default function Home() {
                 Hi, I&apos;m Sam O&apos;Nuallain
               </h1>
               <p className="text-lg text-muted-foreground max-w-prose">
-                I&apos;m a Computer Science student at the University of Massachusetts Amherst, 
-                with a strong interest in AI and machine learning. I&apos;m pursuing a MS in Computer Science 
-                (expected graduation: May 2026) and am looking for full-time roles starting Summer 26!
+                AI engineer and researcher building production-ready machine learning systems, from autonomous agents to dense retrieval models. 
+                I am completing my MS in Computer Science at UMass Amherst and seeking full-time AI/ML Engineer roles for Summer 2026.
               </p>
               <div className="flex gap-4">
                 <Button asChild variant="outline" className="text-primary border-primary/30">

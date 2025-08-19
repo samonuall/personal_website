@@ -38,8 +38,7 @@ export default function Projects() {
       <main className="container mx-auto px-4 py-12">
         <ScrollAnimation className="max-w-2xl mx-auto text-center mb-12">
           <h1 className="text-2xl mb-4">
-            {"<"} Check out my latest projects and{" "}
-            <span className="text-primary">experiments</span> {"/>"}
+            <span className="text-primary">Projects</span>
           </h1>
           <Button asChild variant="outline">
             <Link href="https://github.com/samonuall" target="_blank">
