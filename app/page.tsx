@@ -24,7 +24,7 @@ export default function Home() {
                 Hi, I&apos;m Sam O&apos;Nuallain
               </h1>
               <p className="text-lg text-muted-foreground max-w-prose">
-                AI engineer and researcher building production-ready machine learning systems.
+                AI engineer and researcher building production-ready systems.
               </p>
               <div className="flex gap-4">
                 <Button asChild variant="outline" className="text-primary border-primary/30">
