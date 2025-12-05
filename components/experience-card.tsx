@@ -17,12 +17,13 @@ interface ExperienceCardProps {
 // TODO: change so that ref points to the card actually
 export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({experience}, ref) => {
   const [isOpen, setIsOpen] = useState(false)
+  const isPrivateMode = process.env.NEXT_PUBLIC_PRIVATE_MODE === 'true'
 
   return (
       <>
       <Card
-        className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-border/50 bg-card"
-        onClick={() => setIsOpen(true)}
+        className={`transition-all duration-300 border border-border/50 bg-card ${!isPrivateMode ? 'cursor-pointer hover:scale-[1.02] hover:shadow-lg' : ''}`}
+        onClick={() => !isPrivateMode && setIsOpen(true)}
         ref={ref}
       >
         <CardHeader>
@@ -36,9 +37,11 @@ export const ExperienceCard = forwardRef<HTMLDivElement, ExperienceCardProps>(({
             {experience.dateRange} • {experience.location}
           </div>
           <h3 className="font-medium mb-4 text-primary">{experience.company}</h3>
-          <ul className="text-sm text-muted-foreground list-disc list-inside">
-            Click to learn more
-          </ul>
+          {!isPrivateMode && (
+            <ul className="text-sm text-muted-foreground list-disc list-inside">
+              Click to learn more
+            </ul>
+          )}
         </CardContent>
       </Card>
 

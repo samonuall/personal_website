@@ -24,8 +24,7 @@ export default function Home() {
                 Hi, I&apos;m Sam O&apos;Nuallain
               </h1>
               <p className="text-lg text-muted-foreground max-w-prose">
-                AI engineer and researcher building production-ready machine learning systems, from autonomous agents to dense retrieval models. 
-                I am completing my MS in Computer Science at UMass Amherst and seeking full-time AI/ML Engineer roles for Summer 2026.
+                AI engineer and researcher building production-ready machine learning systems.
               </p>
               <div className="flex gap-4">
                 <Button asChild variant="outline" className="text-primary border-primary/30">
