@@ -2,6 +2,7 @@
 
 ## What is this?
 This repository contains the source code for Sam's personal website. The website is built using a React frontend and Next.js. It showcases my portfolio, technologies I work with, and contact information.
+More specific research on this codebase can be found in the AGENT_WORKSPACE/AGENT_RESEARCH folder.
 
 ## Why did I build this?
 It is mainly inteded to demonstrate my skills as a software engineer and provide a platform for potential employers or collaborators to learn more about me. Since I am a software engineer, the design

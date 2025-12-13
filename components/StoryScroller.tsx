@@ -320,8 +320,7 @@ answer = llm.generate(augmented)`,
               Systems that stay reliable as they scale
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground">
-              Every panel is pulled from live projects and roles—vectors, agents, and tooling stitched
-              together so ML experiments ship like products.
+              Every panel is a sample of the work I&apos;ve done to build AI systems.
             </p>
           </div>
 

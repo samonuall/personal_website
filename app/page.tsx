@@ -6,6 +6,7 @@ import { BackgroundPattern } from "@/components/background-pattern"
 import { Nav } from "@/components/nav"
 import { ScrollAnimation } from "@/components/scroll-animation"
 import { StoryScroller } from "@/components/StoryScroller"
+import { SkillsSection } from "@/components/skills-section"
 import { SocialLinks } from "@/components/social-links"
 import { TypedHeadline } from "@/components/typed-headline"
 import { Button } from "@/components/ui/button"
@@ -131,6 +132,10 @@ export default function Home() {
 
         <ScrollAnimation className="mb-24" delay={60} rootMargin="160px 0px">
           <StoryScroller />
+        </ScrollAnimation>
+
+        <ScrollAnimation className="mb-24" delay={90} rootMargin="160px 0px">
+          <SkillsSection />
         </ScrollAnimation>
       </main>
 
