@@ -3,13 +3,10 @@ import dynamic from "next/dynamic"
 import { Analytics } from "@vercel/analytics/next"
 import Link from "next/link"
 import { BackgroundPattern } from "@/components/background-pattern"
-import { ExperienceSlider } from "@/components/experience-slider"
 import { Nav } from "@/components/nav"
-import { ProjectSlider } from "@/components/project-slider"
 import { ScrollAnimation } from "@/components/scroll-animation"
 import { StoryScroller } from "@/components/StoryScroller"
 import { SocialLinks } from "@/components/social-links"
-import { TechnologiesGrid } from "@/components/technologies-grid"
 import { TypedHeadline } from "@/components/typed-headline"
 import { Button } from "@/components/ui/button"
 
@@ -134,20 +131,6 @@ export default function Home() {
 
         <ScrollAnimation className="mb-24" delay={60} rootMargin="160px 0px">
           <StoryScroller />
-        </ScrollAnimation>
-
-        <ScrollAnimation className="mb-24" delay={100} rootMargin="150px 0px">
-          <h2 className="text-3xl mb-8 text-primary">Experience</h2>
-          <ExperienceSlider />
-        </ScrollAnimation>
-
-        <ScrollAnimation className="mb-24" delay={150} rootMargin="150px 0px">
-          <h2 className="text-3xl mb-8 text-primary">Projects</h2>
-          <ProjectSlider />
-        </ScrollAnimation>
-
-        <ScrollAnimation className="mb-24" delay={200} rootMargin="150px 0px">
-          <TechnologiesGrid />
         </ScrollAnimation>
       </main>
 

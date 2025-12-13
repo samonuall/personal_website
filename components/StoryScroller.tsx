@@ -205,11 +205,11 @@ answer = llm.generate(augmented)`,
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.12),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(34,197,94,0.1),transparent_28%),linear-gradient(140deg,rgba(255,255,255,0.04),transparent_50%)]"
         aria-hidden="true"
       />
-      <div className="relative grid gap-12 lg:grid-cols-[0.6fr_1.4fr]">
+      <div className="relative grid items-start gap-12 lg:grid-cols-[0.6fr_1.4fr]">
         <div
           className={cn(
             "z-10 space-y-6 rounded-2xl border border-border/40 bg-background/70 p-6 backdrop-blur",
-            prefersReducedMotion ? "relative" : "sticky top-24",
+            "sticky top-16",
           )}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
