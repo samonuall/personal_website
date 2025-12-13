@@ -227,7 +227,7 @@ answer = llm.generate(augmented)`,
                 {storyPanels.map((panel, index) => (
                   <article
                     key={panel.id}
-                    ref={(el) => {
+                    ref={(el: HTMLDivElement | null) => {
                       panelRefs.current[index] = el
                     }}
                     className="relative scroll-m-6 snap-start"

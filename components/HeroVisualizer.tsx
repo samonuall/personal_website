@@ -24,6 +24,7 @@ export function HeroVisualizer({ className }: HeroVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const animationFrame = useRef<number>()
+  const originalParticlesRef = useRef<Particle[]>([])
   const particlesRef = useRef<Particle[]>([])
   const sizeRef = useRef({ width: 0, height: 0 })
   const pointerRef = useRef({ x: 0.5, y: 0.5 })
@@ -44,7 +45,7 @@ export function HeroVisualizer({ className }: HeroVisualizerProps) {
       vy: options?.vy,
     })
 
-    particlesRef.current = particlesRef.current.slice(-120)
+    particlesRef.current = originalParticlesRef.current.concat(particlesRef.current.slice(-150))
   }
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export function HeroVisualizer({ className }: HeroVisualizerProps) {
 
     const createParticles = (width: number, height: number) => {
       const density = Math.max(28, Math.min(60, Math.floor((width * height) / 18000)))
-      particlesRef.current = Array.from({ length: density }).map(() => {
+      originalParticlesRef.current = Array.from({ length: density }).map(() => {
         const baseX = Math.random() * width
         const baseY = Math.random() * height
         return {
@@ -85,6 +86,7 @@ export function HeroVisualizer({ className }: HeroVisualizerProps) {
           parallax: 0.6 + Math.random() * 1.2,
         }
       })
+      particlesRef.current = [...originalParticlesRef.current]
     }
 
     const resize = () => {
