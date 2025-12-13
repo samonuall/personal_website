@@ -12,13 +12,9 @@ export function Nav() {
         <Link href="/projects" className="text-muted-foreground hover:text-primary transition-colors">
           projects
         </Link>
-        <Link href="/experience" className="text-muted-foreground hover:text-primary transition-colors">
-          experience
-        </Link>
         <SocialLinks />
         <ThemeToggle />
       </div>
     </nav>
   )
 }
-
