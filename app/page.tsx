@@ -7,6 +7,7 @@ import { ExperienceSlider } from "@/components/experience-slider"
 import { Nav } from "@/components/nav"
 import { ProjectSlider } from "@/components/project-slider"
 import { ScrollAnimation } from "@/components/scroll-animation"
+import { StoryScroller } from "@/components/StoryScroller"
 import { SocialLinks } from "@/components/social-links"
 import { TechnologiesGrid } from "@/components/technologies-grid"
 import { TypedHeadline } from "@/components/typed-headline"
@@ -129,6 +130,10 @@ export default function Home() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation className="mb-24" delay={60} rootMargin="160px 0px">
+          <StoryScroller />
         </ScrollAnimation>
 
         <ScrollAnimation className="mb-24" delay={100} rootMargin="150px 0px">
