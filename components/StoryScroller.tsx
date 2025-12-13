@@ -22,7 +22,7 @@ type StoryPanel = {
 }
 
 export function StoryScroller() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const panelRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -151,14 +151,19 @@ answer = llm.generate(augmented)`,
   useEffect(() => {
     if (prefersReducedMotion) return
 
+    const scrollEl = scrollRef.current
+    if (!scrollEl) return
+
     const handleScroll = () => {
       requestAnimationFrame(() => {
+        const containerRect = scrollEl.getBoundingClientRect()
         const offsets = panelRefs.current.map((panel) => {
           if (!panel) return 0
           const rect = panel.getBoundingClientRect()
-          const viewportHeight = window.innerHeight || 1
+          const viewportHeight = containerRect.height || 1
           const distanceFromCenter =
-            (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight
+            (rect.top + rect.height / 2 - (containerRect.top + viewportHeight / 2)) /
+            viewportHeight
           return -distanceFromCenter * 18
         })
         setParallaxOffsets(offsets)
@@ -166,15 +171,18 @@ answer = llm.generate(augmented)`,
     }
 
     handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    scrollEl.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("resize", handleScroll)
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      scrollEl.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)
     }
   }, [prefersReducedMotion, storyPanels.length])
 
   useEffect(() => {
+    const scrollEl = scrollRef.current
+    if (!scrollEl) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -187,6 +195,7 @@ answer = llm.generate(augmented)`,
         })
       },
       {
+        root: scrollEl,
         threshold: 0.4,
         rootMargin: "-10% 0px -10% 0px",
       },
@@ -198,18 +207,108 @@ answer = llm.generate(augmented)`,
 
   return (
     <section
-      ref={containerRef}
       className="relative overflow-hidden rounded-3xl border border-border/30 bg-card/25 p-6 shadow-2xl sm:p-10"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.12),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(34,197,94,0.1),transparent_28%),linear-gradient(140deg,rgba(255,255,255,0.04),transparent_50%)]"
         aria-hidden="true"
       />
-      <div className="relative grid items-start gap-12 lg:grid-cols-[0.6fr_1.4fr]">
-        <div
+      <div className="relative grid items-start gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="order-2 lg:order-1">
+          <div className="relative overflow-hidden rounded-[28px] border border-border/50 bg-background/70 shadow-xl backdrop-blur">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_40%_20%,rgba(96,165,250,0.16),transparent_28%),radial-gradient(circle_at_80%_80%,rgba(16,185,129,0.12),transparent_26%)]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background via-background/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/70 to-transparent" />
+            <div
+              ref={scrollRef}
+              className="no-scrollbar relative h-[70vh] overflow-y-auto scroll-smooth px-1 py-4 sm:px-3 lg:h-[calc(100vh-9rem)] lg:px-4 snap-y snap-mandatory"
+            >
+              <div className="space-y-12">
+                {storyPanels.map((panel, index) => (
+                  <article
+                    key={panel.id}
+                    ref={(el) => {
+                      panelRefs.current[index] = el
+                    }}
+                    className="relative scroll-m-6 snap-start"
+                  >
+                    {!prefersReducedMotion && (
+                      <div
+                        className={cn(
+                          "pointer-events-none absolute -inset-x-6 inset-y-2 -z-10 rounded-[32px] blur-3xl",
+                          `bg-gradient-to-br ${panel.accent}`,
+                        )}
+                        style={{
+                          transform: `translateY(${(parallaxOffsets[index] ?? 0) * 1.1}px)`,
+                        }}
+                        aria-hidden="true"
+                      />
+                    )}
+                    <div
+                      className={cn(
+                        "relative rounded-3xl border border-border/50 bg-card/80 p-6 shadow-lg backdrop-blur",
+                        !prefersReducedMotion && "transition-transform duration-500 ease-out",
+                      )}
+                      style={
+                        prefersReducedMotion
+                          ? undefined
+                          : { transform: `translateY(${(parallaxOffsets[index] ?? 0) * 0.6}px)` }
+                      }
+                    >
+                      <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-foreground/70">
+                        <Route className="h-4 w-4 text-primary" aria-hidden="true" />
+                        <span>{panel.eyebrow}</span>
+                      </div>
+
+                      <div className="mt-3 space-y-3">
+                        <h3 className="text-2xl font-semibold text-foreground sm:text-3xl">
+                          {panel.title}
+                        </h3>
+                        <p className="text-base leading-relaxed text-muted-foreground">
+                          {panel.summary}
+                        </p>
+                        {panel.detail && (
+                          <p className="text-sm leading-relaxed text-foreground/80">
+                            {panel.detail}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {panel.tags.map((tag) => (
+                          <span
+                            key={`${panel.id}-${tag}`}
+                            className="rounded-full border border-border/60 bg-primary/5 px-3 py-1 text-xs font-medium text-primary"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-card/60">
+                        <div className="flex items-center justify-between border-b border-border/50 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                          <div className="flex items-center gap-2">
+                            <Code2 className="h-4 w-4" aria-hidden="true" />
+                            <span>{panel.snippet.label}</span>
+                          </div>
+                          <span className="text-[10px] text-muted-foreground">snippet</span>
+                        </div>
+                        <pre className="whitespace-pre-wrap break-words px-4 py-4 text-sm font-mono leading-relaxed text-foreground/90">
+                          {panel.snippet.code}
+                        </pre>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside
           className={cn(
-            "z-10 space-y-6 rounded-2xl border border-border/40 bg-background/70 p-6 backdrop-blur",
-            "sticky top-16",
+            "order-1 z-10 flex h-fit flex-col space-y-6 rounded-2xl border border-border/40 bg-background/75 p-6 backdrop-blur",
+            "lg:order-2 lg:sticky lg:top-16 lg:h-[calc(100vh-7rem)]",
           )}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -226,17 +325,18 @@ answer = llm.generate(augmented)`,
             </p>
           </div>
 
-          <div className="relative mt-6 space-y-4 pl-5">
-            <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border/60 to-transparent" />
+          <div className="relative mt-6 flex-1 space-y-4 pl-5">
+            <div className="absolute left-2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-border/60 to-primary/20" />
             {storyPanels.map((panel, index) => (
               <div
                 key={panel.id}
-                className="relative flex items-start gap-3 text-sm text-muted-foreground"
+                className="relative flex items-start gap-3 text-sm text-muted-foreground transition-colors duration-200"
               >
                 <span
                   className={cn(
                     "mt-1.5 h-2.5 w-2.5 rounded-full border border-border/60 bg-background",
-                    index === activeIndex && "border-primary/60 bg-primary/80 shadow-[0_0_0_6px_rgba(96,165,250,0.25)]",
+                    index === activeIndex &&
+                      "border-primary/60 bg-primary/80 shadow-[0_0_0_6px_rgba(96,165,250,0.25)]",
                   )}
                   aria-hidden="true"
                 />
@@ -244,88 +344,19 @@ answer = llm.generate(augmented)`,
                   <p className="text-xs uppercase tracking-[0.14em] text-foreground/70">
                     {panel.eyebrow}
                   </p>
-                  <p className="font-medium text-foreground">{panel.title}</p>
+                  <p
+                    className={cn(
+                      "font-medium text-foreground/80",
+                      index === activeIndex && "text-foreground",
+                    )}
+                  >
+                    {panel.title}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="relative space-y-16">
-          {storyPanels.map((panel, index) => (
-            <div
-              key={panel.id}
-              ref={(el) => {
-                panelRefs.current[index] = el
-              }}
-              className="relative min-h-[60vh]"
-            >
-              {!prefersReducedMotion && (
-                <div
-                  className={cn(
-                    "pointer-events-none absolute -inset-x-8 inset-y-6 -z-10 rounded-[32px] blur-3xl",
-                    `bg-gradient-to-br ${panel.accent}`,
-                  )}
-                  style={{
-                    transform: `translateY(${(parallaxOffsets[index] ?? 0) * 1.1}px)`,
-                  }}
-                  aria-hidden="true"
-                />
-              )}
-              <div
-                className={cn(
-                  "rounded-3xl border border-border/50 bg-background/80 p-6 shadow-lg backdrop-blur",
-                  prefersReducedMotion ? "relative" : "sticky top-10",
-                  !prefersReducedMotion && "transition-transform duration-700 ease-out",
-                )}
-                style={
-                  prefersReducedMotion
-                    ? undefined
-                    : { transform: `translateY(${(parallaxOffsets[index] ?? 0) * 0.6}px)` }
-                }
-              >
-                <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-foreground/70">
-                  <Route className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <span>{panel.eyebrow}</span>
-                </div>
-
-                <div className="mt-3 space-y-3">
-                  <h3 className="text-2xl font-semibold text-foreground sm:text-3xl">
-                    {panel.title}
-                  </h3>
-                  <p className="text-base leading-relaxed text-muted-foreground">{panel.summary}</p>
-                  {panel.detail && (
-                    <p className="text-sm leading-relaxed text-foreground/80">{panel.detail}</p>
-                  )}
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {panel.tags.map((tag) => (
-                    <span
-                      key={`${panel.id}-${tag}`}
-                      className="rounded-full border border-border/60 bg-primary/5 px-3 py-1 text-xs font-medium text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-card/60">
-                  <div className="flex items-center justify-between border-b border-border/50 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                    <div className="flex items-center gap-2">
-                      <Code2 className="h-4 w-4" aria-hidden="true" />
-                      <span>{panel.snippet.label}</span>
-                    </div>
-                    <span className="text-[10px] text-muted-foreground">snippet</span>
-                  </div>
-                  <pre className="whitespace-pre-wrap break-words px-4 py-4 text-sm font-mono leading-relaxed text-foreground/90">
-                    {panel.snippet.code}
-                  </pre>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        </aside>
       </div>
     </section>
   )

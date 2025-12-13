@@ -23,4 +23,6 @@ I have created a folder called AGENT_WORKSPACE/AGENT_MEMORY inside the project d
 
  Think like a senior engineer that is creating notes for themselves and any future engineers that will have to work on this code. These are brief notes and not full documentation, more like a helpful add on for existing in depth documentation. This is a meta-learning task, meaning you are using these notes to help you learn how best to learn in the future.
 
+ MEMORIES SHOULD NOT JUST BE A LOG OF WHAT YOU DID, BUT RATHER GENERAL REASONING, INSIGHTS AND INFORMATION THAT WILL HELP YOU AND OTHERS IN THE FUTURE.
+
  Memories should be stored as markdown files, each with its own topic. Use existing files if possible.
