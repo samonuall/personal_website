@@ -1,0 +1,10 @@
+# Personal website – working notes
+
+- Repo shape: Next.js 14 app with app router (`app/page.tsx`, `app/projects/page.tsx`, `app/experience/page.tsx`); UI pieces in `components`, static content in `data/*.ts`, styling via Tailwind CSS tokens in `app/globals.css`; dialogs/theme toggle rely on Radix + local state.
+- Navigation behavior: home preview sliders (`components/*-slider.tsx`) push hash URLs (`/projects#id`, `/experience#id`); target pages read `window.location.hash`, scroll into view, and dispatch click to auto-open dialogs.
+- Environment flag: `NEXT_PUBLIC_PRIVATE_MODE` disables opening `ExperienceCard` dialogs (renders “Click to learn more” text but blocks setOpen).
+- Testing setup: Jest + ts-jest + Testing Library; tests live under `testing/**/*.test.tsx`; `jest.setup.js` mocks `next/image`; run via `npm test`.
+- Useful commands: `npm run dev` to view site; `npm test` for unit tests; `sed -n '1,200p' <file>` for quick file reads; `ls <dir>` for structure.
+- Styling/theme: CSS variables for light/dark defined in `app/globals.css`; `components/theme-toggle.tsx` toggles `light` class on `document.documentElement` using localStorage; default dark if no stored value.
+- Home hero refactor: `app/page.tsx` now uses a split layout with a gradient visual placeholder (future `HeroVisualizer`) and a left column that mounts `TypedHeadline`. `components/typed-headline.tsx` now animates a typing/deleting cycle with a caret; respects `prefers-reduced-motion` (static text) and includes a noscript fallback. Hero keywords are curated from existing tech/experience content.
+- Hero visualizer: `components/HeroVisualizer.tsx` is a client-only canvas animation with pointer parallax, click-to-spawn particles (capped at 70), reduced-motion awareness (hides canvas), and gradient fallbacks. Density scales with container size (smaller, more numerous particles) and base settings live in the `config` object near the top. It is lazy-loaded in `app/page.tsx` via `dynamic(..., { ssr: false })` with a static gradient fallback to avoid SSR/hydration issues; container no longer shows a border frame.
