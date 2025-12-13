@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Code2, Route, Sparkles } from "lucide-react"
+import { Activity, Route, Sparkles } from "lucide-react"
 
 import { experiences } from "@/data/experiences"
 import { projects } from "@/data/projects"
@@ -14,10 +14,12 @@ type StoryPanel = {
   summary: string
   detail?: string
   tags: string[]
-  snippet: {
+  metrics: {
     label: string
-    code: string
-  }
+    value: string
+    hint?: string
+    progress?: number
+  }[]
   accent: string
 }
 
@@ -49,17 +51,26 @@ export function StoryScroller() {
           klaviyo?.description[1] ??
           "Orchestrated parallel API calls and added the right data context so ML-powered reporting stayed trustworthy.",
         tags: ["Python", "React", "AWS", "API analytics"],
-        snippet: {
-          label: "Async enrichment",
-          code: `async def enrich_report(event_ids):
-    payloads = await gather_from_public_apis(event_ids)
-    context = await embed_help_docs()
-    return assemble({
-        "delivery": payloads["push"],
-        "audience": context["segments"],
-        "quality": payloads["lifecycle"],
-    })`,
-        },
+        metrics: [
+          {
+            label: "Product adoption",
+            value: "400+ companies",
+            hint: "using the push analytics feature",
+            progress: 92,
+          },
+          {
+            label: "Report throughput",
+            value: "5,000 reports / 2 wks",
+            hint: "customer-facing dashboards",
+            progress: 88,
+          },
+          {
+            label: "Roadmap velocity",
+            value: "3-week ship",
+            hint: "MCP server feature lifecycle",
+            progress: 80,
+          },
+        ],
         accent: "from-emerald-400/25 via-primary/10 to-transparent",
       },
       {
@@ -71,13 +82,26 @@ export function StoryScroller() {
           "Built a pipeline to embed and serve image vectors for high-throughput search.",
         detail: "Kept latency predictable by separating embedding from retrieval and leaning on GPU-backed workers.",
         tags: clipProject?.technologies ?? ["Python", "FastAPI", "CLIP"],
-        snippet: {
-          label: "FastAPI + CLIP",
-          code: `@app.post("/search")
-async def search(image: bytes):
-    embedding = clip.encode(image)
-    return index.similar(embedding, k=5)`,
-        },
+        metrics: [
+          {
+            label: "Dataset scale",
+            value: "100k images embedded",
+            hint: "Spark + Kafka pipeline",
+            progress: 95,
+          },
+          {
+            label: "Inference speed",
+            value: "162 QPS (8-core)",
+            hint: "FastAPI CLIP service",
+            progress: 90,
+          },
+          {
+            label: "Deployment",
+            value: "Dockerized end-to-end",
+            hint: "GPU/CPU handoff",
+            progress: 72,
+          },
+        ],
         accent: "from-indigo-500/25 via-sky-400/15 to-transparent",
       },
       {
@@ -91,14 +115,26 @@ async def search(image: bytes):
           xCamp?.description[3] ??
           "Sessions stay responsive through multi-threaded message handling and an embedding-backed retrieval layer.",
         tags: ["LangChain", "React", "OpenAI API", "Concurrency"],
-        snippet: {
-          label: "Concurrent sessions",
-          code: `def tutor(message, session_id):
-    with SessionPool(session_id) as session:
-        history = session.fetch_thread()
-        context = retrieval.embed_submissions(90000)
-        return llm.reply(message, history=history, context=context)`,
-        },
+        metrics: [
+          {
+            label: "Students reached",
+            value: "2,000+ learners",
+            hint: "LLM coding tutor",
+            progress: 94,
+          },
+          {
+            label: "Context index",
+            value: "90k submissions",
+            hint: "embedded for retrieval",
+            progress: 90,
+          },
+          {
+            label: "Debugger lift",
+            value: "+40% accuracy",
+            hint: "dense retrieval grounding",
+            progress: 85,
+          },
+        ],
         accent: "from-amber-400/20 via-rose-400/15 to-transparent",
       },
       {
@@ -110,13 +146,20 @@ async def search(image: bytes):
           "Engineered a reinforcement learning poker agent that balances exploration with calculated rollouts.",
         detail: "Policy updates stay stable by mixing search-backed moves with replay buffers.",
         tags: poker?.technologies ?? ["Python", "PyTorch", "MCTS"],
-        snippet: {
-          label: "Tree search loop",
-          code: `for state in rollout(game):
-    node = tree.expand(state)
-    reward = simulate(node, policy_net)
-    tree.backpropagate(node, reward)`,
-        },
+        metrics: [
+          {
+            label: "Simulations run",
+            value: "50,000+ poker games",
+            hint: "self-play training",
+            progress: 78,
+          },
+          {
+            label: "Policy design",
+            value: "AlphaZero-inspired",
+            hint: "custom network for Hold'em",
+            progress: 74,
+          },
+        ],
         accent: "from-purple-500/20 via-primary/15 to-transparent",
       },
       {
@@ -128,12 +171,20 @@ async def search(image: bytes):
           "Researching how retrieval models boost LLM comprehension and recall.",
         detail: "Evaluations pair HuggingFace models with targeted augmentation to keep outputs grounded.",
         tags: radar?.technologies ?? ["Python", "HuggingFace", "PyTorch"],
-        snippet: {
-          label: "Model pass",
-          code: `query = retriever.fetch(question)
-augmented = rerank(query, top_k=5)
-answer = llm.generate(augmented)`,
-        },
+        metrics: [
+          {
+            label: "Benchmark",
+            value: "SOTA on BRIGHT",
+            hint: "reasoning-aware dense retrieval",
+            progress: 96,
+          },
+          {
+            label: "Data pipeline",
+            value: "15x throughput",
+            hint: "vLLM GPU data generation",
+            progress: 92,
+          },
+        ],
         accent: "from-cyan-400/20 via-emerald-300/20 to-transparent",
       },
     ]
@@ -285,17 +336,46 @@ answer = llm.generate(augmented)`,
                         ))}
                       </div>
 
-                      <div className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-card/60">
-                        <div className="flex items-center justify-between border-b border-border/50 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                          <div className="flex items-center gap-2">
-                            <Code2 className="h-4 w-4" aria-hidden="true" />
-                            <span>{panel.snippet.label}</span>
+                      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                        {panel.metrics.map((metric, metricIndex) => (
+                          <div
+                            key={`${panel.id}-${metric.label}-${metricIndex}`}
+                            className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/70 p-4 shadow-inner"
+                          >
+                            {!prefersReducedMotion && (
+                              <div
+                                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 blur-xl animate-[pulse_2.8s_ease-in-out_infinite]"
+                                aria-hidden="true"
+                              />
+                            )}
+                            <div className="relative flex items-center justify-between gap-3">
+                              <div className="space-y-1">
+                                <p className="text-[11px] uppercase tracking-[0.14em] text-foreground/70">
+                                  {metric.label}
+                                </p>
+                                <p className="text-xl font-semibold text-foreground">{metric.value}</p>
+                                {metric.hint && (
+                                  <p className="text-xs text-muted-foreground">{metric.hint}</p>
+                                )}
+                              </div>
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                <Activity className="h-5 w-5" aria-hidden="true" />
+                              </div>
+                            </div>
+                            {typeof metric.progress === "number" && (
+                              <div className="relative mt-4 h-2 overflow-hidden rounded-full bg-border/60">
+                                <div
+                                  className={cn(
+                                    "h-full rounded-full bg-gradient-to-r from-primary via-foreground/80 to-primary/80",
+                                    !prefersReducedMotion && "animate-[pulse_3s_ease-in-out_infinite]",
+                                  )}
+                                  style={{ width: `${metric.progress}%` }}
+                                  aria-hidden="true"
+                                />
+                              </div>
+                            )}
                           </div>
-                          <span className="text-[10px] text-muted-foreground">snippet</span>
-                        </div>
-                        <pre className="whitespace-pre-wrap break-words px-4 py-4 text-sm font-mono leading-relaxed text-foreground/90">
-                          {panel.snippet.code}
-                        </pre>
+                        ))}
                       </div>
                     </div>
                   </article>
