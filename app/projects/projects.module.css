@@ -1,0 +1,60 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.heroTitle {
+  display: inline-block;
+  background: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
+  background-size: 220% 220%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseGradient 8s ease-in-out infinite;
+  /* Ensure descenders (like the bottom of 'j') are not clipped */
+  padding-bottom: 0.125rem;
+}
+
+.listItem {
+  position: relative;
+}
+
+.listItem:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: -0.65rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.22), transparent);
+  pointer-events: none;
+}
+
+@keyframes pulseGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle {
+    animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .listItem:not(:last-child)::after {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: -0.85rem;
+  }
+}

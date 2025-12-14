@@ -18,7 +18,6 @@ type StoryPanel = {
     label: string
     value: string
     hint?: string
-    progress?: number
   }[]
   accent: string
 }
@@ -56,19 +55,16 @@ export function StoryScroller() {
             label: "Product adoption",
             value: "400+ companies",
             hint: "using the push analytics feature",
-            progress: 92,
           },
           {
             label: "Report throughput",
             value: "5,000 reports / 2 wks",
             hint: "customer-facing dashboards",
-            progress: 88,
           },
           {
             label: "Roadmap velocity",
             value: "3-week ship",
             hint: "MCP server feature lifecycle",
-            progress: 80,
           },
         ],
         accent: "from-emerald-400/25 via-primary/10 to-transparent",
@@ -87,19 +83,16 @@ export function StoryScroller() {
             label: "Dataset scale",
             value: "100k images embedded",
             hint: "Spark + Kafka pipeline",
-            progress: 95,
           },
           {
             label: "Inference speed",
             value: "162 QPS (8-core)",
             hint: "FastAPI CLIP service",
-            progress: 90,
           },
           {
             label: "Deployment",
             value: "Dockerized end-to-end",
             hint: "GPU/CPU handoff",
-            progress: 72,
           },
         ],
         accent: "from-indigo-500/25 via-sky-400/15 to-transparent",
@@ -120,19 +113,16 @@ export function StoryScroller() {
             label: "Students reached",
             value: "2,000+ learners",
             hint: "LLM coding tutor",
-            progress: 94,
           },
           {
             label: "Context index",
             value: "90k submissions",
             hint: "embedded for retrieval",
-            progress: 90,
           },
           {
             label: "Debugger lift",
             value: "+40% accuracy",
             hint: "dense retrieval grounding",
-            progress: 85,
           },
         ],
         accent: "from-amber-400/20 via-rose-400/15 to-transparent",
@@ -151,13 +141,11 @@ export function StoryScroller() {
             label: "Simulations run",
             value: "50,000+ poker games",
             hint: "self-play training",
-            progress: 78,
           },
           {
             label: "Policy design",
             value: "AlphaZero-inspired",
             hint: "custom network for Hold'em",
-            progress: 74,
           },
         ],
         accent: "from-purple-500/20 via-primary/15 to-transparent",
@@ -176,13 +164,11 @@ export function StoryScroller() {
             label: "Benchmark",
             value: "SOTA on BRIGHT",
             hint: "reasoning-aware dense retrieval",
-            progress: 96,
           },
           {
             label: "Data pipeline",
             value: "15x throughput",
             hint: "vLLM GPU data generation",
-            progress: 92,
           },
         ],
         accent: "from-cyan-400/20 via-emerald-300/20 to-transparent",
@@ -362,18 +348,7 @@ export function StoryScroller() {
                                 <Activity className="h-5 w-5" aria-hidden="true" />
                               </div>
                             </div>
-                            {typeof metric.progress === "number" && (
-                              <div className="relative mt-4 h-2 overflow-hidden rounded-full bg-border/60">
-                                <div
-                                  className={cn(
-                                    "h-full rounded-full bg-gradient-to-r from-primary via-foreground/80 to-primary/80",
-                                    !prefersReducedMotion && "animate-[pulse_3s_ease-in-out_infinite]",
-                                  )}
-                                  style={{ width: `${metric.progress}%` }}
-                                  aria-hidden="true"
-                                />
-                              </div>
-                            )}
+                            
                           </div>
                         ))}
                       </div>
