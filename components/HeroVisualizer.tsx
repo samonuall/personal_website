@@ -196,8 +196,8 @@ export function HeroVisualizer({ className }: HeroVisualizerProps) {
         for (let i = 0; i < burstCount; i++) {
           const angle = Math.random() * Math.PI * 2
           const size = 3 + Math.random() * 7
-          const speedBase = 2.4 + Math.random() * 3.2
-          const inertiaBoost = Math.max(1, 7 / size)
+          const speedBase = 6 + Math.random() * 3.2
+          const inertiaBoost = Math.max(1, 10 / size)
           const speed = speedBase * inertiaBoost
           spawnParticle(x, y, {
             size,
