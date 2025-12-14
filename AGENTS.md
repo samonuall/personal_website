@@ -14,6 +14,8 @@ This is a standard Next.js project. To run it locally, just use npm run dev and 
 When making changes,
 Make sure to make incremental commits. No need to test with unit or integration tests at all, just make sure the site works when you run it locally with the help of me poking around the local version.
 
+Also, make sure to emphasize creating components that are reusable and modular. The site should be easy to update in the future as I add more projects or change information. This means do not do a lot of inline HTTML or CSS that is specific to one page only. Instead, create components that can be used across multiple pages.
+
 ## Using Memories
 Within the AGENT_WORKSPACE/AGENT_MEMORY folder, you may find markdown files that contain valuable insights and learnings from previous tasks. These memories are intended to help you understand the codebase better and provide guidance on best practices.
 

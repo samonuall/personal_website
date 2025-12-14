@@ -1,7 +1,7 @@
 # Personal website – working notes
 
-- Repo shape: Next.js 14 app with app router (`app/page.tsx`, `app/projects/page.tsx`, `app/experience/page.tsx`); UI pieces in `components`, static content in `data/*.ts`, styling via Tailwind CSS tokens in `app/globals.css`; dialogs/theme toggle rely on Radix + local state.
-- Navigation behavior: home preview sliders (`components/*-slider.tsx`) push hash URLs (`/projects#id`, `/experience#id`); target pages read `window.location.hash`, scroll into view, and dispatch click to auto-open dialogs.
+- Repo shape: Next.js 14 app with app router (home `app/page.tsx`, projects grid `app/projects/page.tsx`; experience route removed—experience data now only feeds components like `StoryScroller`); UI pieces in `components`, static content in `data/*.ts`, styling via Tailwind CSS tokens in `app/globals.css`; dialogs/theme toggle rely on Radix + local state.
+- Navigation behavior: project previews still push `#/id` and `app/projects/page.tsx` scrolls + clicks into the right dialog; experience hash routing was removed with the experience page, so keep any future sliders from pointing to `/experience`.
 - Environment flag: `NEXT_PUBLIC_PRIVATE_MODE` disables opening `ExperienceCard` dialogs (renders “Click to learn more” text but blocks setOpen).
 - Testing setup: Jest + ts-jest + Testing Library; tests live under `testing/**/*.test.tsx`; `jest.setup.js` mocks `next/image`; run via `npm test`.
 - Useful commands: `npm run dev` to view site; `npm test` for unit tests; `sed -n '1,200p' <file>` for quick file reads; `ls <dir>` for structure.

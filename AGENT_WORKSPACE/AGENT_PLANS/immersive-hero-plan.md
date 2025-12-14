@@ -1,7 +1,7 @@
 # Immersive Home Hero & Narrative Scroller Plan
 
 ## Plan summary
-- Rebuild home hero into split layout with reactive visual (canvas/shader/particles) and rotating headline keywords; keep CTAs intact.
+- Rebuild home hero into split layout with reactive visual (canvas/shader/particles) and rotating headline keywords; keep CTAs intact (contact + projects).
 - Add scroll-driven narrative sections after hero: pinned/staggered panels that spotlight skills/projects with parallax and code snippet reveals using existing data.
 - House new visuals in dedicated components for isolation and lazy loading; preserve routing/dialog behaviors and theme toggle.
 - Provide reduced-motion/static fallbacks; keep theme contrast intact.
@@ -9,7 +9,7 @@
 
 ## Goal & boundary
 - Change: immersive hero with reactive visual and cycling specialties; scroll-driven story spine replacing/augmenting sliders.
-- Unchanged: routes (`/`, `/projects`, `/experience`), CTA targets, dialogs/hash behavior on other pages, `data/*.ts`, theme toggle logic.
+- Unchanged: routes (`/`, `/projects`), CTA targets, dialogs/hash behavior on other pages, `data/*.ts`, theme toggle logic.
 - Boundary: home page UI/UX only; no new content or backend.
 
 ## Approach (high level)

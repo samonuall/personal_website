@@ -90,7 +90,7 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-4">
                   <Button asChild variant="outline" className="border-primary/30 text-primary">
-                    <Link href="/experience">See experiences</Link>
+                    <Link href="mailto:samonuall@gmail.com">Get in touch</Link>
                   </Button>
                   <Button asChild className="bg-gradient-to-r from-primary to-indigo-500 text-white">
                     <Link href="/projects">View projects</Link>
