@@ -14,6 +14,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: pulseGradient 8s ease-in-out infinite;
+  /* Ensure descenders (like the bottom of 'j') are not clipped */
+  padding-bottom: 0.125rem;
 }
 
 .listItem {
