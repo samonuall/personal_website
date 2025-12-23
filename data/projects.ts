@@ -57,6 +57,13 @@ export const projects: Project[] = [
     image: "/sip_poster.jpg",
     technologies: ["Python", "Pandas", "HuggingFace API"],
     link: "https://colab.research.google.com/drive/1Jud-_r0wpBRpk6IyCk5PfVVZCgFxPi3Z?usp=sharing"
+  },
+  {
+    id: "7",
+    title: "Advanced Reinforcement Learning: SARSA & Actor-Critic",
+    description: "Implemented and compared three advanced RL algorithms (True Online SARSA, n-Step SARSA, and Advantage Actor-Critic with GAE) on CartPole and LunarLander environments, with extensive hyperparameter tuning and performance analysis.",
+    image: "/lunar_lander_screenshot.png",
+    technologies: ["Python", "OpenAI Gym", "PyTorch", "Tile Coding"]
   }
 ];
 

@@ -161,6 +161,19 @@ export const ProjectRow = forwardRef<HTMLDivElement, ProjectRowProps>(
                   </a>
                 </Button>
               )}
+
+              {project.id === "7" && (
+                <Button
+                  asChild
+                  size="sm"
+                  className="shadow-none bg-gradient-to-r from-primary to-indigo-500 text-white focus-visible:ring-1 focus-visible:ring-primary/60"
+                >
+                  <a href="/RL_final_report.pdf" target="_blank" rel="noopener noreferrer">
+                    <FileText className="h-4 w-4" aria-hidden="true" />
+                    View Report
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
 
@@ -168,6 +181,17 @@ export const ProjectRow = forwardRef<HTMLDivElement, ProjectRowProps>(
             <div className={styles.mediaBody}>
               {mediaSlot ? (
                 <div className={styles.mediaFrame}>{mediaSlot}</div>
+              ) : project.id === "7" ? (
+                <div className={styles.mediaFrame}>
+                  <video
+                    controls
+                    className={styles.mediaVideo}
+                    poster="/lunar_lander_screenshot.png"
+                  >
+                    <source src="/lunar_lander_video-episode-0.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               ) : (
                 <div className={styles.mediaFrame}>
                   <Image
