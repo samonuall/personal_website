@@ -38,8 +38,15 @@ export const projects: Project[] = [
     description: "Built an end-to-end ML inference API for CLIP embeddings using FastAPI; implemented adaptive batching with a queue-and-timeout mechanism to maximize GPU utilization; indexed 100k images in Pinecone for similarity search.",
     image: "/openai-clip.webp",
     technologies: ["Python", "FastAPI", "CLIP", "Pinecone"],
-    github: "https://github.com/Sejal135/532Project",
-    link: "https://www.youtube.com/watch?v=S8pFvLiviMs"
+    github: "https://github.com/Sejal135/532Project"
+  },
+  {
+    id: "8",
+    title: "Fine-Tuning LLMs for System Initiative Prediction",
+    description: "Quantized and fine-tuned Llama-7b on tens of thousands of MS Dialog conversations, presenting findings at a final poster session.",
+    image: "/sip_poster.jpg",
+    technologies: ["Python", "Pandas", "HuggingFace API"],
+    link: "https://colab.research.google.com/drive/1Jud-_r0wpBRpk6IyCk5PfVVZCgFxPi3Z?usp=sharing"
   },
   {
     id: "5",
@@ -56,14 +63,6 @@ export const projects: Project[] = [
     image: "/echo_chamber.jpg",
     technologies: ["Python", "Pandas", "Networkx"],
     github: "https://github.com/samonuall/h311_project"
-  },
-  {
-    id: "8",
-    title: "Fine-Tuning LLMs for System Initiative Prediction",
-    description: "Quantized and fine-tuned Llama-7b on tens of thousands of MS Dialog conversations, presenting findings at a final poster session.",
-    image: "/sip_poster.jpg",
-    technologies: ["Python", "Pandas", "HuggingFace API"],
-    link: "https://colab.research.google.com/drive/1Jud-_r0wpBRpk6IyCk5PfVVZCgFxPi3Z?usp=sharing"
   },
 ];
 
