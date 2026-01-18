@@ -17,9 +17,9 @@ export const experiences: Experience[] = [
     location: "Boston, MA",
     dateRange: "June 2025 - August 2025",
     description: [
-      "Shipped a full-stack analytics feature (Python, React, AWS) for push notifications, adopted by 400+ companies and generating over 5,000 reports in two months.",
-      "Enriched analytics reports with 5+ new key data attributes by orchestrating parallel public API calls, providing critical context for Klaviyo MCP server clients.",
-      "Prototyped advanced features including a vector search index of Klaviyo help docs and data visualization UI for the Klaviyo MCP server, leading to their direct addition to the company's AI product roadmap."
+      "Owned end-to-end lifecycle of a Model Context Protocol (MCP) server extension with threaded orchestration layer for complex data retrievals.",
+      "Shipped push notification analytics (Python, React) adopted by 400+ companies, generating 5,000+ reports in two weeks.",
+      "Prototyped semantic documentation search and prompt management system that was added directly to the product roadmap."
     ]
   },
   {
@@ -30,8 +30,8 @@ export const experiences: Experience[] = [
     location: "UMass Amherst",
     dateRange: "September 2024 - Present",
     description: [
-      "Researching how retrieval models can enhance and adapt to LLMs, as part of an NSF-funded REU",
-      "Running experiments on LLMs using Python, HuggingFace API, and open-source text data"
+      "Second author on RaDeR (EMNLP '25); achieved state-of-the-art results on BRIGHT benchmark using fine-tuned dense retrieval models on A100 GPU clusters.",
+      "Boosted data throughput by 15x for LLM post-training by designing a three-tier parallel pipeline with Python multiprocessing, threaded I/O, and model parallelism."
     ]
   },
   {
@@ -42,10 +42,8 @@ export const experiences: Experience[] = [
     location: "Remote",
     dateRange: "June 2024 - August 2024",
     description: [
-      "Built an LLM-powered coding tutor for 2,000+ students across the US and China",
-      "Collaborated with the CEO and IT team to deploy the chatbot using LangChain, React, and OpenAI API",
-      "Overhauled the chatbot prototype by adding multi-threading and session-based concurrency across Flask and React, enabling multi-user functionality and scalable message storage",
-      "Automated the conversion of 90,000+ student submissions into an embedding index using SQL and integrated it into a dense retrieval system, boosting debugger accuracy by 40%"
+      "Implemented cookie-based session management for a prototype chatbot, maintaining persistent state and conversation context across sessions (Flask, React).",
+      "Automated conversion of 90,000+ student submissions into an embedding index and integrated it into a FAISS-backed dense retrieval system, improving LLM-judged response quality by 42%."
     ]
   },
   {
@@ -56,9 +54,9 @@ export const experiences: Experience[] = [
     location: "Denver, CO",
     dateRange: "June 2023 - August 2023",
     description: [
-      "Promoted to a larger satellite project, focusing on the data subsystem in Agile sprints",
-      "Designed and implemented object-oriented subsystem interfaces using C++, Docker, and Google Test while coordinating across multiple different teams",
-      "Developed a server in Python to replicate an unbuilt payload, streamlining the testing process and reducing development time"
+      "Developed performance-critical C++ data interfaces for LM 50 & 400 satellites, enabling real-time communication between satellite components.",
+      "Built serialization and validation routines for satellite telemetry data, ensuring reliable, low-latency delivery under strict memory constraints.",
+      "Engineered a reusable C++ class to manage asynchronous packet processing using mutexes and locks for thread safety in a memory-constrained environment."
     ]
   },
   {
@@ -69,9 +67,8 @@ export const experiences: Experience[] = [
     location: "Denver, CO",
     dateRange: "June 2022 - August 2022",
     description: [
-      "Designed, tested, and launched components for a large C++ codebase in a Cubesat mission",
-      "Collaborated in a large Agile team, developing with CI/CD pipelines in GitLab",
-      "Accelerated inter-application messaging by 100% by enhancing the existing TCP service with multi-threading"
+      "Designed, tested, and launched components for a large C++ codebase in a Cubesat mission using CI/CD pipelines in GitLab.",
+      "Accelerated inter-application messaging by 100% by enhancing the existing TCP service with multi-threading."
     ]
   }
 ];

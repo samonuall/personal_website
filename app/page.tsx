@@ -137,6 +137,100 @@ export default function Home() {
         <ScrollAnimation className="mb-24" delay={90} rootMargin="160px 0px">
           <SkillsSection />
         </ScrollAnimation>
+
+        <ScrollAnimation className="mb-24" delay={120} rootMargin="160px 0px">
+          <section className="relative overflow-hidden rounded-3xl border border-border/30 bg-card/25 p-6 shadow-2xl sm:p-10">
+            <div
+              className="pointer-events-none absolute -left-16 top-0 h-64 w-64 rounded-full bg-primary/25 blur-3xl"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute bottom-[-120px] right-[-40px] h-80 w-80 rounded-full bg-indigo-600/25 blur-3xl"
+              aria-hidden="true"
+            />
+
+            <div className="relative grid items-start gap-10 lg:grid-cols-2">
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="inline-flex max-w-fit items-center gap-2 rounded-full border border-border/50 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
+                    <span>Education</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="rounded-2xl border border-border/40 bg-background/70 p-5 shadow-sm">
+                      <h3 className="text-lg font-semibold text-foreground">
+                        University of Massachusetts Amherst
+                      </h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        MS in Computer Science
+                      </p>
+                      <p className="mt-1 text-xs text-muted-foreground/80">Expected May 2026</p>
+                    </div>
+
+                    <div className="rounded-2xl border border-border/40 bg-background/70 p-5 shadow-sm">
+                      <h3 className="text-lg font-semibold text-foreground">
+                        University of Massachusetts Amherst
+                      </h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        BS in Computer Science & Economics
+                      </p>
+                      <div className="mt-1 flex items-center gap-2">
+                        <p className="text-xs text-muted-foreground/80">Graduated December 2024</p>
+                        <span className="text-xs text-muted-foreground/60">•</span>
+                        <p className="text-xs font-semibold text-primary">3.9 GPA</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="inline-flex max-w-fit items-center gap-2 rounded-full border border-border/50 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+                    <span className="h-2 w-2 rounded-full bg-amber-400" aria-hidden="true" />
+                    <span>Publications</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <a
+                      href="https://debrup-61.github.io/RaDeR.github.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block rounded-2xl border border-border/40 bg-background/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                            RaDeR: Reasoning-aware Dense Retrieval Models
+                          </h3>
+                          <p className="mt-2 text-sm text-muted-foreground">
+                            D. Das, S. O&apos;Nuallain, R. Rahimi
+                          </p>
+                          <p className="mt-1 text-xs text-muted-foreground/80">EMNLP &apos;25</p>
+                        </div>
+                        <svg
+                          className="h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollAnimation>
       </main>
 
       <footer className="border-t border-border/20 bg-popover/5">

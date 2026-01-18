@@ -11,10 +11,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "7",
-    title: "Reinforcement Learning Final Project",
-    description: "Implemented and compared three advanced RL algorithms (True Online SARSA, n-Step SARSA, and Advantage Actor-Critic with GAE) on CartPole and LunarLander environments, with extensive hyperparameter tuning and performance analysis.",
+    title: "Deep Reinforcement Learning: Advantage Actor Critic",
+    description: "Implemented Advantage Actor-Critic (A2C) with generalized advantage estimation from scratch in PyTorch; trained on OpenAI Gymnasium environments (Lunar Lander, Cart Pole) to validate convergence and policy stability.",
     image: "/lunar_lander_screenshot.png",
-    technologies: ["Python", "OpenAI Gym", "PyTorch", "Tile Coding"]
+    technologies: ["Python", "PyTorch", "Gym"]
   },
   {
     id: "2",
@@ -27,17 +27,17 @@ export const projects: Project[] = [
   {
     id: "3",
     title: "AI Poker Agent with Deep Reinforcement Learning",
-    description: "Engineered a deep reinforcement learning agent for Texas Hold'em, leveraging a Monte Carlo Tree Search (MCTS) guided by a custom policy network to learn decision-making under uncertainty.",
+    description: "Engineered a deep reinforcement learning agent for Texas Hold'em, leveraging a Monte Carlo Tree Search (MCTS) guided by a custom deep learning policy network to learn decision-making under uncertainty; secured 7th place in a 22-team tournament.",
     image: "/poker_image.png",
     technologies: ["Python", "PyTorch", "MCTS"],
     github: "https://github.com/samonuall/alpha-zero-general/tree/630df23a0436e242733cc54e8af331bd9cc28937"
   },
   {
     id: "4",
-    title: "CLIP-Based Image Similarity Search Pipeline",
-    description: "Built a full data pipeline to process and embed a 100k image dataset using OpenAI's CLIP model. Deployed the model as a high-throughput inference service with FastAPI for real-time image similarity search.",
+    title: "CLIP Image and Text Embedding Pipeline and Inference System",
+    description: "Built an end-to-end ML inference API for CLIP embeddings using FastAPI; implemented adaptive batching with a queue-and-timeout mechanism to maximize GPU utilization; indexed 100k images in Pinecone for similarity search.",
     image: "/openai-clip.webp",
-    technologies: ["Python", "FastAPI", "CLIP", "OpenAI"],
+    technologies: ["Python", "FastAPI", "CLIP", "Pinecone"],
     github: "https://github.com/Sejal135/532Project",
     link: "https://www.youtube.com/watch?v=S8pFvLiviMs"
   },

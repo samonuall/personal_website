@@ -50,16 +50,6 @@ const defaultSkills: Skill[] = [
     tone: "from-blue-400/25 via-primary/10 to-transparent",
   },
   {
-    name: "AWS",
-    area: "Cloud infra",
-    tone: "from-amber-400/20 via-orange-400/15 to-transparent",
-  },
-  {
-    name: "Spark",
-    area: "Distributed data",
-    tone: "from-orange-400/25 via-amber-500/10 to-transparent",
-  },
-  {
     name: "Git",
     area: "Collaboration",
     tone: "from-rose-400/25 via-amber-400/10 to-transparent",
@@ -74,11 +64,6 @@ const defaultSkills: Skill[] = [
     name: "Django REST",
     area: "Structured services",
     tone: "from-slate-400/25 via-emerald-400/10 to-transparent",
-  },
-  {
-    name: "Kafka",
-    area: "Streaming",
-    tone: "from-purple-400/25 via-amber-400/10 to-transparent",
   },
   {
     name: "NLP / HuggingFace",
