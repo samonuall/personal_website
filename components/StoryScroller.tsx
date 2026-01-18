@@ -48,7 +48,7 @@ export function StoryScroller() {
           "Shipped full-stack analytics that teams rely on to understand and iterate on real-time messaging.",
         detail:
           klaviyo?.description[1] ??
-          "Orchestrated parallel API calls and added the right data context so ML-powered reporting stayed trustworthy.",
+          "Replaced API wrappers with threaded, cached orchestration layer for complex data retrievals; built MCP server extension with dynamic prompt templates.",
         tags: ["Python", "React", "AWS", "API analytics"],
         metrics: [
           {
@@ -76,7 +76,7 @@ export function StoryScroller() {
         summary:
           clipProject?.description ??
           "Built a pipeline to embed and serve image vectors for high-throughput search.",
-        detail: "Kept latency predictable by separating embedding from retrieval and leaning on GPU-backed workers.",
+        detail: "Developed an adaptive batching with a queue-and-timeout mechanism to maximize GPU utilization.",
         tags: clipProject?.technologies ?? ["Python", "FastAPI", "CLIP"],
         metrics: [
           {
@@ -92,7 +92,7 @@ export function StoryScroller() {
           {
             label: "Deployment",
             value: "Dockerized end-to-end",
-            hint: "GPU/CPU handoff",
+            hint: "",
           },
         ],
         accent: "from-indigo-500/25 via-sky-400/15 to-transparent",
@@ -100,29 +100,29 @@ export function StoryScroller() {
       {
         id: "xcamp-tutor",
         eyebrow: `${xCamp?.company ?? "LLM tutor"} • ${xCamp?.location ?? "Remote"}`,
-        title: "LLM tutor that scales past classrooms",
+        title: "Prototype chatbot + coding tutor agent",
         summary:
           xCamp?.description[0] ??
-          "Built an LLM-powered coding tutor used by thousands of students in parallel.",
+          "Implemented cookie-based session management for a prototype chatbot, maintaining persistent state and conversation context across sessions.",
         detail:
-          xCamp?.description[3] ??
-          "Sessions stay responsive through multi-threaded message handling and an embedding-backed retrieval layer.",
-        tags: ["LangChain", "React", "OpenAI API", "Concurrency"],
+          xCamp?.description[1] ??
+          "Automated conversion of 90k+ student submissions into a FAISS-backed dense retrieval system for prototype coding tutor agent.",
+        tags: ["Flask", "React", "FAISS", "Embeddings"],
         metrics: [
           {
-            label: "Students reached",
-            value: "2,000+ learners",
-            hint: "LLM coding tutor",
+            label: "Embedding index",
+            value: "90k+ submissions",
+            hint: "automated conversion pipeline",
           },
           {
-            label: "Context index",
-            value: "90k submissions",
-            hint: "embedded for retrieval",
+            label: "Response quality",
+            value: "+42% improvement",
+            hint: "LLM-judged evaluation",
           },
           {
-            label: "Debugger lift",
-            value: "+40% accuracy",
-            hint: "dense retrieval grounding",
+            label: "Session state",
+            value: "Cookie-based",
+            hint: "persistent context management",
           },
         ],
         accent: "from-amber-400/20 via-rose-400/15 to-transparent",
@@ -152,22 +152,22 @@ export function StoryScroller() {
       },
       {
         id: "rader",
-        eyebrow: radar?.title ?? "Retrieval research",
-        title: "Retrieval augmented dense retrieval",
+        eyebrow: "EMNLP '25 Publication • UMass CIIR",
+        title: "Second author — RaDeR retrieval paper",
         summary:
           radar?.description ??
-          "Researching how retrieval models boost LLM comprehension and recall.",
-        detail: "Evaluations pair HuggingFace models with targeted augmentation to keep outputs grounded.",
+          "Co-authored EMNLP '25 publication on reasoning-aware dense retrieval, contributing to experiment design, paper sections, and training pipelines.",
+        detail: "Fine-tuned novel retrieval models on A100 clusters, achieving state-of-the-art results on BRIGHT benchmark with DeepSpeed optimization.",
         tags: radar?.technologies ?? ["Python", "HuggingFace", "PyTorch"],
         metrics: [
           {
-            label: "Benchmark",
-            value: "SOTA on BRIGHT",
-            hint: "reasoning-aware dense retrieval",
+            label: "Publication",
+            value: "EMNLP '25",
+            hint: "second author, SOTA on BRIGHT",
           },
           {
             label: "Data pipeline",
-            value: "15x throughput",
+            value: "15x throughput boost",
             hint: "vLLM GPU data generation",
           },
         ],
@@ -366,13 +366,9 @@ export function StoryScroller() {
             "lg:order-2 lg:sticky lg:top-16 lg:h-[calc(100vh-7rem)]",
           )}
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Story spine</span>
-          </div>
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold leading-tight text-primary sm:text-4xl">
-              Systems that stay reliable as they scale
+              Experiences
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground">
               Every panel is a sample of the work I&apos;ve done to build AI systems.
