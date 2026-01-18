@@ -46,6 +46,7 @@ const defaultSkills: Skill[] = [
   },
   {
     name: "Docker",
+    icon: "/icons/docker_logo.svg",
     area: "Containers",
     tone: "from-blue-400/25 via-primary/10 to-transparent",
   },
@@ -62,6 +63,7 @@ const defaultSkills: Skill[] = [
   },
   {
     name: "Django REST",
+    icon: "/icons/django-rest_logo.svg",
     area: "Structured services",
     tone: "from-slate-400/25 via-emerald-400/10 to-transparent",
   },
