@@ -66,10 +66,6 @@ export default function Home() {
             />
             <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="relative z-10 flex flex-col gap-6">
-                <div className="inline-flex max-w-fit items-center gap-2 rounded-full border border-border/50 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
-                  <span>AI systems portfolio</span>
-                </div>
 
                 <TypedHeadline
                   fallback="Hi, I&apos;m Sam O&apos;Nuallain"
@@ -77,15 +73,13 @@ export default function Home() {
                     "Python, FastAPI, and LangChain systems",
                     "PyTorch research with HuggingFace models",
                     "React interfaces for AI tools",
-                    "SQL and Pandas data pipelines",
                     "C/C++ reliability for space systems",
                   ]}
                   className="text-4xl font-semibold leading-tight text-primary sm:text-5xl lg:text-6xl"
                 />
 
                 <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                  AI engineer and researcher building production-ready systems with resilient MLOps,
-                  concise research, and thoughtful interfaces.
+                  Full-stack AI/ML engineer building production systems and publishing research. Second author on EMNLP '25 paper, deployed MCP servers at Klaviyo, achieved SOTA on BRIGHT benchmark, and scaled LLM training pipelines 15x with parallel orchestration.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -100,19 +94,19 @@ export default function Home() {
                 <div className="grid gap-3 text-sm text-muted-foreground sm:max-w-xl sm:grid-cols-2">
                   <div className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-primary/70" aria-hidden="true" />
-                    <span>LLM + multi-agent workflows</span>
+                    <span>MCP servers + RAG systems</span>
                   </div>
                   <div className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-amber-400/70" aria-hidden="true" />
-                    <span>Product-focused research</span>
+                    <span>Published research (EMNLP)</span>
                   </div>
                   <div className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-sky-400/70" aria-hidden="true" />
-                    <span>Reliable deployment + evals</span>
+                    <span>GPU training at scale (A100)</span>
                   </div>
                   <div className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-indigo-400/70" aria-hidden="true" />
-                    <span>Interfaces that explain the work</span>
+                    <span>React + Python full-stack</span>
                   </div>
                 </div>
               </div>

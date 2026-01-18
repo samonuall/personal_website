@@ -76,7 +76,7 @@ export function StoryScroller() {
         summary:
           clipProject?.description ??
           "Built a pipeline to embed and serve image vectors for high-throughput search.",
-        detail: "Kept latency predictable by separating embedding from retrieval and leaning on GPU-backed workers.",
+        detail: "Developed an adaptive batching with a queue-and-timeout mechanism to maximize GPU utilization.",
         tags: clipProject?.technologies ?? ["Python", "FastAPI", "CLIP"],
         metrics: [
           {
@@ -92,7 +92,7 @@ export function StoryScroller() {
           {
             label: "Deployment",
             value: "Dockerized end-to-end",
-            hint: "GPU/CPU handoff",
+            hint: "",
           },
         ],
         accent: "from-indigo-500/25 via-sky-400/15 to-transparent",
@@ -100,29 +100,29 @@ export function StoryScroller() {
       {
         id: "xcamp-tutor",
         eyebrow: `${xCamp?.company ?? "LLM tutor"} • ${xCamp?.location ?? "Remote"}`,
-        title: "LLM tutor that scales past classrooms",
+        title: "Prototype chatbot + coding tutor agent",
         summary:
           xCamp?.description[0] ??
-          "Built an LLM-powered coding tutor used by thousands of students in parallel.",
+          "Implemented cookie-based session management for a prototype chatbot, maintaining persistent state and conversation context across sessions.",
         detail:
-          xCamp?.description[3] ??
-          "Automated conversion of 90k+ student submissions into a FAISS-backed dense retrieval system for prototype coding tutor.",
-        tags: ["LangChain", "React", "OpenAI API", "Concurrency"],
+          xCamp?.description[1] ??
+          "Automated conversion of 90k+ student submissions into a FAISS-backed dense retrieval system for prototype coding tutor agent.",
+        tags: ["Flask", "React", "FAISS", "Embeddings"],
         metrics: [
           {
-            label: "Students reached",
-            value: "2,000+ learners",
-            hint: "LLM coding tutor",
+            label: "Embedding index",
+            value: "90k+ submissions",
+            hint: "automated conversion pipeline",
           },
           {
-            label: "Context index",
-            value: "90k submissions",
-            hint: "FAISS-backed retrieval",
+            label: "Response quality",
+            value: "+42% improvement",
+            hint: "LLM-judged evaluation",
           },
           {
-            label: "Debugger lift",
-            value: "+42% accuracy",
-            hint: "LLM-judged response quality",
+            label: "Session state",
+            value: "Cookie-based",
+            hint: "persistent context management",
           },
         ],
         accent: "from-amber-400/20 via-rose-400/15 to-transparent",
@@ -368,7 +368,7 @@ export function StoryScroller() {
         >
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold leading-tight text-primary sm:text-4xl">
-              Systems that stay reliable as they scale
+              Experiences
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground">
               Every panel is a sample of the work I&apos;ve done to build AI systems.
