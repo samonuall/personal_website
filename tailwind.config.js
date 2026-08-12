@@ -12,9 +12,12 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1.25rem",
+        sm: "2rem",
+      },
       screens: {
-        "2xl": "1400px",
+        "2xl": "1180px",
       },
     },
     extend: {
@@ -44,6 +47,10 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        highlight: {
+          DEFAULT: "hsl(var(--highlight))",
+          foreground: "hsl(var(--highlight-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -59,8 +66,13 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'ui-serif', 'Georgia', 'serif'],
+      },
+      // Soft, low-contrast elevation — no heavy drop shadows.
+      boxShadow: {
+        card: "0 1px 2px hsl(25 16% 16% / 0.04), 0 8px 24px -12px hsl(25 16% 16% / 0.10)",
+        lift: "0 1px 2px hsl(25 16% 16% / 0.05), 0 16px 36px -16px hsl(25 16% 16% / 0.16)",
       },
       keyframes: {
         "accordion-down": {
@@ -80,4 +92,3 @@ export default {
   },
   plugins: [tailwindcssAnimate],
 }
-
