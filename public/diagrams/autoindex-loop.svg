@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-labelledby="aiTitle aiDesc">
+  <title id="aiTitle">AutoIndex optimization loop</title>
+  <desc id="aiDesc">Raw documents pass through a learned representation program before being indexed with BM25. Retrieval failures feed an optimization loop where an analysis agent diagnoses them, a code agent synthesizes candidate transformation programs, and a selection step keeps only what validates on held-out data.</desc>
+
+  <defs>
+    <marker id="aiArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34675E" />
+    </marker>
+    <style>
+      .ai-box { fill: #FFFFFF; stroke: #E3DDD3; stroke-width: 1.25; }
+      .ai-label { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12.5px; font-weight: 500; fill: #2E2822; }
+      .ai-step { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 12.5px; fill: #2E2822; }
+      .ai-strong { font-weight: 600; fill: #34675E; }
+      .ai-cap { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; fill: #6B6157; }
+      .ai-note { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 11px; font-style: italic; fill: #C0693C; }
+      .ai-line { stroke: #34675E; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="480" height="360" fill="#FBFAF7" />
+
+  <!-- Fixed pipeline -->
+  <rect class="ai-box" x="20" y="34" width="130" height="50" rx="11" />
+  <text class="ai-label" x="85" y="64" text-anchor="middle">Raw documents</text>
+
+  <path class="ai-line" d="M 152 59 L 171 59" marker-end="url(#aiArrow)" />
+
+  <rect class="ai-box" x="175" y="34" width="130" height="50" rx="11" stroke="#34675E" stroke-opacity="0.45" fill="#F2F6F4" />
+  <text class="ai-label" x="240" y="55" text-anchor="middle">Representation</text>
+  <text class="ai-label" x="240" y="71" text-anchor="middle">program</text>
+
+  <path class="ai-line" d="M 307 59 L 326 59" marker-end="url(#aiArrow)" />
+
+  <rect class="ai-box" x="330" y="34" width="130" height="50" rx="11" />
+  <text class="ai-label" x="395" y="55" text-anchor="middle">BM25 index</text>
+  <text class="ai-label" x="395" y="71" text-anchor="middle" fill="#6B6157" font-size="11">held fixed</text>
+
+  <!-- Loop wiring -->
+  <path class="ai-line" d="M 395 86 L 395 148" marker-end="url(#aiArrow)" />
+  <text class="ai-note" x="387" y="121" text-anchor="end">failures</text>
+
+  <path class="ai-line" d="M 240 148 L 240 86" marker-end="url(#aiArrow)" />
+  <text class="ai-note" x="232" y="121" text-anchor="end">rewrites</text>
+
+  <!-- Optimization loop -->
+  <rect x="20" y="150" width="440" height="192" rx="16" fill="#FFFFFF" fill-opacity="0.6" stroke="#C7BFB2" stroke-width="1.25" stroke-dasharray="5 5" />
+  <text class="ai-cap" x="40" y="174">OPTIMIZATION LOOP</text>
+
+  <rect class="ai-box" x="44" y="188" width="392" height="38" rx="10" />
+  <text class="ai-step" x="60" y="212"><tspan class="ai-strong">Analysis agent</tspan> — diagnose retrieval failures</text>
+
+  <path class="ai-line" d="M 240 228 L 240 242" marker-end="url(#aiArrow)" />
+
+  <rect class="ai-box" x="44" y="244" width="392" height="38" rx="10" />
+  <text class="ai-step" x="60" y="268"><tspan class="ai-strong">Code agent</tspan> — synthesize transformation programs</text>
+
+  <path class="ai-line" d="M 240 284 L 240 298" marker-end="url(#aiArrow)" />
+
+  <rect class="ai-box" x="44" y="300" width="392" height="38" rx="10" />
+  <text class="ai-step" x="60" y="324"><tspan class="ai-strong">Selection</tspan> — keep what validates on held-out data</text>
+</svg>

@@ -1,45 +1,37 @@
 'use client'
 
-import { forwardRef, type ReactNode, useMemo, useState } from "react"
+import { forwardRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, ExternalLink, FileText, Github } from "lucide-react"
+import { ChevronDown, ExternalLink, FileText, Github, Globe } from "lucide-react"
 
-import { Project } from "@/data/projects"
+import type { Project, ProjectLink, ProjectLinkKind } from "@/data/projects"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { TagList } from "@/components/ui/tag"
 import styles from "./project-row.module.css"
+
+const linkPresets: Record<
+  ProjectLinkKind,
+  { label: string; icon: typeof Github; variant: "default" | "outline" | "ghost" }
+> = {
+  paper: { label: "Read the paper", icon: FileText, variant: "default" },
+  site: { label: "Project page", icon: Globe, variant: "outline" },
+  github: { label: "GitHub", icon: Github, variant: "outline" },
+  demo: { label: "Open demo", icon: ExternalLink, variant: "ghost" },
+}
 
 interface ProjectRowProps {
   project: Project
   className?: string
-  /**
-   * Optional id forwarded to the outer container for hash navigation.
-   */
+  /** Id forwarded to the container for hash navigation. */
   id?: string
-  /**
-   * Controlled expand state.
-   */
+  /** Controlled expand state. */
   expanded?: boolean
-  /**
-   * Initial expand state for uncontrolled usage.
-   */
   defaultExpanded?: boolean
-  /**
-   * Called whenever expand state changes.
-   */
   onExpandedChange?: (expanded: boolean) => void
-  /**
-   * Called with project id when the row toggles; useful for page-level hash handling.
-   */
+  /** Called with the project id whenever the row toggles; used for hash sync. */
   onToggle?: (payload: { projectId: string; expanded: boolean }) => void
-  /**
-   * Optional custom media content rendered in the detail area.
-   */
-  mediaSlot?: ReactNode
-  /**
-   * Optional id for the details section (aria-controls target).
-   */
   detailId?: string
 }
 
@@ -53,148 +45,105 @@ export const ProjectRow = forwardRef<HTMLDivElement, ProjectRowProps>(
       defaultExpanded = false,
       onExpandedChange,
       onToggle,
-      mediaSlot,
       detailId,
     },
     ref,
   ) => {
-    const resolvedId = id ?? `project-${project.id}`
+    const resolvedId = id ?? project.id
     const resolvedDetailId = detailId ?? `${resolvedId}-details`
     const isControlled = expanded !== undefined
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
     const isExpanded = isControlled ? expanded : internalExpanded
 
-    const summaryTechnologies = useMemo(
-      () => project.technologies.slice(0, 3),
-      [project.technologies],
-    )
-
     const handleToggle = () => {
       const next = !isExpanded
-      if (!isControlled) {
-        setInternalExpanded(next)
-      }
+      if (!isControlled) setInternalExpanded(next)
       onExpandedChange?.(next)
       onToggle?.({ projectId: project.id, expanded: next })
     }
 
     return (
-      <div ref={ref} id={resolvedId} className={cn(styles.row, "group", className)}>
-        <div className={styles.header}>
-          <div className={styles.meta}>
-            <div className={styles.kicker}>
-            </div>
-            <div className={styles.titleRow}>
-              <h3 className={styles.title}>{project.title}</h3>
-              <div className={styles.divider} aria-hidden="true" />
-            </div>
-            <div className={styles.techList}>
-              {summaryTechnologies.map((tech) => (
-                <span key={tech} className={styles.tech}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={handleToggle}
-            aria-expanded={isExpanded}
-            aria-controls={resolvedDetailId}
-            className={styles.toggle}
-            data-expanded={isExpanded}
-            aria-label={`${isExpanded ? "Collapse" : "Expand"} ${project.title} details`}
+      <div
+        ref={ref}
+        id={resolvedId}
+        className={cn(
+          "group rounded-2xl border border-border bg-card shadow-card transition-colors",
+          isExpanded ? "border-primary/30" : "hover:border-primary/25",
+          className,
+        )}
+      >
+        <button
+          type="button"
+          onClick={handleToggle}
+          aria-expanded={isExpanded}
+          aria-controls={resolvedDetailId}
+          className="flex w-full items-start gap-4 rounded-2xl px-5 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:px-6 sm:py-6"
+        >
+          <span className="hidden w-14 shrink-0 pt-1 text-sm tabular-nums text-muted-foreground sm:block">
+            {project.year}
+          </span>
+
+          <span className="min-w-0 flex-1 space-y-2">
+            <span className="block font-heading text-lg leading-snug text-foreground transition-colors group-hover:text-primary sm:text-xl">
+              {project.title}
+            </span>
+            <span className="block text-sm leading-relaxed text-muted-foreground">
+              {project.tagline}
+            </span>
+            <TagList items={project.technologies} limit={4} className="pt-1" />
+          </span>
+
+          <span
+            className={cn(
+              "mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors",
+              isExpanded && "border-primary/40 text-primary",
+            )}
+            aria-hidden="true"
           >
-            <span className="hidden sm:inline">{isExpanded ? "Collapse" : "Expand"}</span>
-            <span className="sm:hidden">{isExpanded ? "Hide" : "Show"}</span>
             <ChevronDown
-              className={cn(
-                "h-4 w-4 transition-transform duration-200",
-                isExpanded ? "rotate-180" : "rotate-0",
-              )}
-              aria-hidden="true"
+              className={cn("h-4 w-4 transition-transform duration-200", isExpanded && "rotate-180")}
             />
-          </button>
-        </div>
+          </span>
+        </button>
 
         <div
           id={resolvedDetailId}
           className={cn(styles.details, isExpanded && styles.detailsOpen)}
-          aria-hidden={!isExpanded}
         >
-          <div className={styles.copy}>
-            <p>{project.description}</p>
+          <div className={styles.detailsInner}>
+            <div className="grid gap-8 border-t border-border/70 px-5 pb-6 pt-6 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="space-y-5">
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
 
-            <div className={styles.ctas}>
-              {project.github && (
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className={styles.ctaPrimary}
-                >
-                  <Link href={project.github} target="_blank" rel="noreferrer">
-                    <Github className="h-4 w-4" aria-hidden="true" />
-                    GitHub
-                  </Link>
-                </Button>
-              )}
+                {project.highlights && project.highlights.length > 0 && (
+                  <ul className="space-y-2">
+                    {project.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="relative pl-5 text-sm leading-relaxed text-foreground/80"
+                      >
+                        <span
+                          className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-highlight"
+                          aria-hidden="true"
+                        />
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-              {project.link && (
-                <Button asChild variant="ghost" size="sm" className={styles.ctaGhost}>
-                  <Link href={project.link} target="_blank" rel="noreferrer">
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    Visit Project
-                  </Link>
-                </Button>
-              )}
-
-              {project.id === "7" && (
-                <Button
-                  asChild
-                  size="sm"
-                  className="shadow-none bg-gradient-to-r from-primary to-indigo-500 text-white focus-visible:ring-1 focus-visible:ring-primary/60"
-                >
-                  <a href="/RL_final_report.pdf" target="_blank" rel="noopener noreferrer">
-                    <FileText className="h-4 w-4" aria-hidden="true" />
-                    View Report
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
-
-          <div className={styles.mediaPanel}>
-            <div className={styles.mediaBody}>
-              {mediaSlot ? (
-                <div className={styles.mediaFrame}>{mediaSlot}</div>
-              ) : project.id === "7" ? (
-                <div className="flex flex-col items-center gap-3">
-                  <div className={styles.mediaFrame}>
-                    <video
-                      controls
-                      className={styles.mediaVideo}
-                      poster="/lunar_lander_screenshot.png"
-                    >
-                      <source src="/lunar_lander_video-episode-0.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                {project.links && project.links.length > 0 && (
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {project.links.map((link) => (
+                      <ProjectLinkButton key={link.href} link={link} />
+                    ))}
                   </div>
-                  <p className="text-center text-sm text-muted-foreground">
-                    Agent landing a space ship after learning from experience
-                  </p>
-                </div>
-              ) : (
-                <div className={styles.mediaFrame}>
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(min-width: 1024px) 420px, 90vw"
-                    className={styles.mediaImage}
-                  />
-                </div>
-              )}
+                )}
+              </div>
+
+              <ProjectMediaPanel project={project} />
             </div>
           </div>
         </div>
@@ -204,3 +153,68 @@ export const ProjectRow = forwardRef<HTMLDivElement, ProjectRowProps>(
 )
 
 ProjectRow.displayName = "ProjectRow"
+
+function ProjectLinkButton({ link }: { link: ProjectLink }) {
+  const preset = linkPresets[link.kind]
+  const Icon = preset.icon
+  const external = link.href.startsWith("http")
+
+  return (
+    <Button asChild size="sm" variant={preset.variant}>
+      <Link
+        href={link.href}
+        {...(external
+          ? { target: "_blank", rel: "noreferrer" }
+          : { target: "_blank", rel: "noopener noreferrer" })}
+      >
+        <Icon className="h-4 w-4" aria-hidden="true" />
+        {link.label ?? preset.label}
+      </Link>
+    </Button>
+  )
+}
+
+function ProjectMediaPanel({ project }: { project: Project }) {
+  const { media, title } = project
+
+  if (!media) {
+    return (
+      <div className="flex min-h-[180px] items-center justify-center rounded-xl border border-dashed border-border bg-muted/50">
+        <span className="font-heading text-3xl text-muted-foreground/40" aria-hidden="true">
+          {title.slice(0, 2)}
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <figure className="space-y-2">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-muted/40">
+        {media.type === "video" ? (
+          <video
+            controls
+            preload="none"
+            poster={media.poster}
+            className="h-full w-full object-contain"
+          >
+            <source src={media.src} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            src={media.src}
+            alt={title}
+            fill
+            sizes="(min-width: 1024px) 440px, 90vw"
+            className="object-contain p-2"
+          />
+        )}
+      </div>
+      {media.caption && (
+        <figcaption className="text-xs leading-relaxed text-muted-foreground">
+          {media.caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}

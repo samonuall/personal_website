@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-labelledby="rdlTitle rdlDesc">
+  <title id="rdlTitle">LLM reward design feedback loop</title>
+  <desc id="rdlDesc">A task description and obfuscated environment code go to an LLM, which writes a reward function. PPO trains a policy against that reward, and the resulting fitness score feeds back to the LLM for another round.</desc>
+
+  <defs>
+    <marker id="rdlArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34675E" />
+    </marker>
+    <style>
+      .rdl-box { fill: #FFFFFF; stroke: #E3DDD3; stroke-width: 1.25; }
+      .rdl-label { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; fill: #2E2822; }
+      .rdl-sub { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 11.5px; fill: #6B6157; }
+      .rdl-note { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 11px; font-style: italic; fill: #C0693C; }
+      .rdl-line { stroke: #34675E; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="480" height="360" fill="#FBFAF7" />
+
+  <!-- Step 1 -->
+  <rect class="rdl-box" x="110" y="26" width="230" height="56" rx="12" />
+  <text class="rdl-label" x="225" y="49" text-anchor="middle">Task + obfuscated env code</text>
+  <text class="rdl-sub" x="225" y="67" text-anchor="middle">AI Safety Gridworlds</text>
+
+  <path class="rdl-line" d="M 225 82 L 225 108" marker-end="url(#rdlArrow)" />
+
+  <!-- Step 2 -->
+  <rect class="rdl-box" x="110" y="112" width="230" height="56" rx="12" stroke="#34675E" stroke-opacity="0.45" />
+  <text class="rdl-label" x="225" y="135" text-anchor="middle">LLM designs a reward function</text>
+  <text class="rdl-sub" x="225" y="153" text-anchor="middle">Claude Sonnet 4.6 · Qwen3.5-9B</text>
+
+  <path class="rdl-line" d="M 225 168 L 225 194" marker-end="url(#rdlArrow)" />
+
+  <!-- Step 3 -->
+  <rect class="rdl-box" x="110" y="198" width="230" height="56" rx="12" />
+  <text class="rdl-label" x="225" y="221" text-anchor="middle">PPO trains a policy</text>
+  <text class="rdl-sub" x="225" y="239" text-anchor="middle">stable-baselines3</text>
+
+  <path class="rdl-line" d="M 225 254 L 225 280" marker-end="url(#rdlArrow)" />
+
+  <!-- Step 4 -->
+  <rect class="rdl-box" x="110" y="284" width="230" height="52" rx="12" />
+  <text class="rdl-label" x="225" y="307" text-anchor="middle">Fitness score</text>
+  <text class="rdl-sub" x="225" y="324" text-anchor="middle">measures true intent, not reward</text>
+
+  <!-- Feedback path back into the LLM step -->
+  <path class="rdl-line" d="M 340 310 L 396 310 Q 410 310 410 296 L 410 154 Q 410 140 396 140 L 340 140" marker-end="url(#rdlArrow)" />
+  <text class="rdl-note" x="424" y="228" text-anchor="middle" transform="rotate(90 424 228)">feedback</text>
+</svg>

@@ -3,15 +3,14 @@
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Analytics } from "@vercel/analytics/next"
+import { Github } from "lucide-react"
 
 import { BackgroundPattern } from "@/components/background-pattern"
 import { Nav } from "@/components/nav"
 import { ProjectRow } from "@/components/project-row"
-import { ScrollAnimation } from "@/components/scroll-animation"
+import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import { projects } from "@/data/projects"
-import styles from "./projects.module.css"
 
 export default function Projects() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
@@ -24,36 +23,28 @@ export default function Projects() {
     [],
   )
 
-  const focusHashTarget = useCallback(
-    (targetId: string | null, { scroll = true }: { scroll?: boolean } = {}) => {
-      if (!targetId) return
+  const focusHashTarget = useCallback((targetId: string | null) => {
+    if (!targetId) return
 
-      const decodedId = decodeURIComponent(targetId)
-      setExpandedId(decodedId)
+    const decodedId = decodeURIComponent(targetId)
+    setExpandedId(decodedId)
 
-      const target = rowRefs.current[decodedId]
-      if (target && scroll) {
-        requestAnimationFrame(() => {
-          target.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
-        })
-      }
-    },
-    [],
-  )
+    const target = rowRefs.current[decodedId]
+    if (target) {
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+      })
+    }
+  }, [])
 
   useEffect(() => {
     const initialHash = window.location.hash.slice(1)
-    if (initialHash) {
-      focusHashTarget(initialHash)
-    }
+    if (initialHash) focusHashTarget(initialHash)
 
     const onHashChange = () => {
       const nextHash = window.location.hash.slice(1)
-      if (nextHash) {
-        focusHashTarget(nextHash)
-      } else {
-        setExpandedId(null)
-      }
+      if (nextHash) focusHashTarget(nextHash)
+      else setExpandedId(null)
     }
 
     window.addEventListener("hashchange", onHashChange)
@@ -77,47 +68,49 @@ export default function Projects() {
   )
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen">
       <Analytics />
       <BackgroundPattern />
       <Nav />
-      <main className="container mx-auto px-4 py-12">
-        <ScrollAnimation className="mx-auto mb-10 max-w-3xl text-center">
-          <h1 className={cn("text-3xl font-semibold leading-tight sm:text-4xl", styles.heroTitle)}>Projects</h1>
-          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-            A selection of my some of my recent work.
+
+      <main className="container">
+        <section className="max-w-2xl space-y-5 pt-16 pb-12 sm:pt-20">
+          <p className="eyebrow flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-highlight" aria-hidden="true" />
+            Projects
           </p>
-          <div className="mt-6 inline-flex">
-            <Button asChild variant="outline" className="border-primary/35 text-primary shadow-none">
+          <h1 className="text-4xl leading-tight text-foreground sm:text-5xl">
+            Things I&apos;ve built
+          </h1>
+          <p className="text-lg leading-relaxed text-muted-foreground">
+            Research projects, ML services, and coursework I took further than it needed to
+            go. Expand any row for the write-up, results, and links.
+          </p>
+          <div className="pt-1">
+            <Button asChild variant="outline">
               <Link href="https://github.com/samonuall" target="_blank" rel="noreferrer">
-                View GitHub Profile
+                <Github className="h-4 w-4" aria-hidden="true" />
+                GitHub profile
               </Link>
             </Button>
           </div>
-        </ScrollAnimation>
+        </section>
 
-        <div className={cn("mx-auto flex max-w-5xl flex-col", styles.list)}>
-          {projects.map((project, index) => (
-            <ScrollAnimation
+        <div className="space-y-4 pb-20">
+          {projects.map((project) => (
+            <ProjectRow
               key={project.id}
-              delay={Math.min(index * 60, 220)}
-              threshold={0.05}
-              rootMargin="120px 0px"
-              className={styles.listItem}
-            >
-              <ProjectRow
-                ref={registerRowRef(project.id)}
-                project={project}
-                id={project.id}
-                detailId={`${project.id}-details`}
-                expanded={expandedId === project.id}
-                onToggle={handleRowToggle}
-                className="backdrop-blur-sm"
-              />
-            </ScrollAnimation>
+              ref={registerRowRef(project.id)}
+              project={project}
+              id={project.id}
+              expanded={expandedId === project.id}
+              onToggle={handleRowToggle}
+            />
           ))}
         </div>
       </main>
+
+      <SiteFooter />
     </div>
   )
 }
