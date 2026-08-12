@@ -7,10 +7,25 @@ export interface Experience {
   dateRange: string;
   description: string[];
   technologies?: string[];
+  /** Marks the present-day role. Drives the hero's "currently" line and the timeline badge. */
+  current?: boolean;
 }
 
 /** Ordered newest-first — this is the order the timeline renders. */
 export const experiences: Experience[] = [
+  {
+    id: "current",
+    title: "AI Engineer",
+    company: "Klaviyo",
+    contractType: "Full-time",
+    location: "Boston, MA",
+    dateRange: "June 2026 – Present",
+    current: true,
+    description: [
+      "Building AI and LLM-powered features across Klaviyo's product.",
+    ],
+    technologies: ["Python", "LLMs", "React"],
+  },
   {
     id: "0",
     title: "Software Engineering Intern",

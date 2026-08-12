@@ -1,5 +1,5 @@
 import { experiences, type Experience } from "@/data/experiences"
-import { TagList } from "@/components/ui/tag"
+import { Tag, TagList } from "@/components/ui/tag"
 
 /**
  * A quiet vertical timeline driven entirely by `data/experiences.ts`.
@@ -19,12 +19,13 @@ export function ExperienceTimeline({ items = experiences }: { items?: Experience
           </div>
 
           <div className="space-y-3">
-            <div>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               <h3 className="text-lg leading-snug text-foreground">
                 {experience.title}
                 <span className="text-muted-foreground"> · </span>
                 <span className="text-primary">{experience.company}</span>
               </h3>
+              {experience.current && <Tag variant="solid">Current</Tag>}
             </div>
 
             <ul className="space-y-2">

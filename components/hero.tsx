@@ -2,6 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { experiences } from "@/data/experiences"
+
+const currentRole = experiences.find((experience) => experience.current)
 
 const facts = [
   "Retrieval & RAG systems",
@@ -17,7 +20,7 @@ export function Hero() {
         <div className="max-w-2xl space-y-6">
           <p className="eyebrow flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-highlight" aria-hidden="true" />
-            Amherst, MA
+            Boston, MA
           </p>
 
           <h1 className="text-4xl leading-[1.1] text-foreground sm:text-5xl">
@@ -39,8 +42,20 @@ export function Hero() {
             </Link>
             , which learns executable document transformations that lift retrieval quality
             without touching the retriever. Before that: dense retrieval research at UMass
-            CIIR, MCP server work at Klaviyo, and flight software at Lockheed Martin Space.
+            CIIR, MCP server work during an earlier Klaviyo internship, and flight software
+            at Lockheed Martin Space.
           </p>
+
+          {currentRole && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-border bg-card px-4 py-3 text-sm shadow-card">
+              <span className="eyebrow shrink-0">Currently</span>
+              <span className="text-foreground">
+                {currentRole.title} at{" "}
+                <span className="text-primary">{currentRole.company}</span>
+              </span>
+              <span className="text-muted-foreground">since {currentRole.dateRange.split(" – ")[0]}</span>
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-3 pt-1">
             <Button asChild>
