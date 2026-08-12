@@ -1,59 +1,47 @@
 'use client'
-import React from 'react'
 
 import { useEffect, useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 
+/**
+ * Toggles the `dark` class on <html> and persists the choice.
+ * The initial class is applied pre-paint by `components/theme-script.tsx`;
+ * this component only mirrors and updates it.
+ */
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(false)
+  const [isDark, setIsDark] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('theme')
-      if (stored) {
-        setIsLight(stored === 'light')
-        if (stored === 'light') document.documentElement.classList.add('light')
-        else document.documentElement.classList.remove('light')
-      } else {
-        // default to dark (no 'light' class)
-        document.documentElement.classList.remove('light')
-        setIsLight(false)
-      }
-    } catch {
-        // ignore in SSR or privacy modes  
-    }
+    setIsDark(document.documentElement.classList.contains('dark'))
+    setMounted(true)
   }, [])
 
-  useEffect(() => {
+  const toggle = () => {
+    const next = !isDark
+    setIsDark(next)
+    document.documentElement.classList.toggle('dark', next)
     try {
-      if (isLight) {
-        document.documentElement.classList.add('light')
-        localStorage.setItem('theme', 'light')
-      } else {
-        document.documentElement.classList.remove('light')
-        localStorage.setItem('theme', 'dark')
-      }
+      localStorage.setItem('theme', next ? 'dark' : 'light')
     } catch {
-      // ignore
+      // localStorage can be unavailable in private modes — the class still applies.
     }
-  }, [isLight])
+  }
 
   return (
     <button
-      aria-label="Toggle color theme"
-      aria-pressed={isLight}
-      onClick={() => setIsLight((v) => !v)}
-      className="relative inline-flex items-center w-14 h-7 bg-card/20 rounded-full p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+      type="button"
+      onClick={toggle}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      aria-pressed={isDark}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
     >
-      <div className={`absolute left-2 inset-y-0 flex items-center justify-center transition-opacity duration-300 ${isLight ? 'opacity-100' : 'opacity-0'}`}>
-        <Sun className="w-4 h-4" />
-      </div>
-      <div className={`absolute right-2 inset-y-0 flex items-center justify-center transition-opacity duration-300 ${isLight ? 'opacity-0' : 'opacity-100'}`}>
-        <Moon className="w-4 h-4" />
-      </div>
-      <span
-        className={`relative z-10 block h-5 w-5 rounded-full shadow transform transition-all duration-300 ease-out will-change-transform ${isLight ? 'translate-x-7 bg-gradient-to-r from-white/90 to-blue-200 scale-105 rotate-3' : 'translate-x-0 bg-card scale-100 rotate-0'}`}
-      />
+      {/* Render a stable icon until mounted so SSR and client markup agree. */}
+      {mounted && isDark ? (
+        <Moon className="h-4 w-4" aria-hidden="true" />
+      ) : (
+        <Sun className="h-4 w-4" aria-hidden="true" />
+      )}
     </button>
   )
 }

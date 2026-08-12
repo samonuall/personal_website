@@ -1,107 +1,138 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
+  /*
+   * Light "warm paper" palette is the default. Tokens follow the shadcn
+   * contract (background/foreground/card/muted/accent/...) so the primitives in
+   * components/ui keep working, plus one extra `--highlight` token used for
+   * small warm accents (dots, underlines, active states).
+   */
   :root {
-    --background: 210 4% 4%; /* #0b1220 */
-    --foreground: 220 85% 94%; /* #e6eef8 */
-    --card: 220 18% 13%;
-    --card-foreground: 210 20% 98%;
-    --popover: 220 18% 13%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 213 90% 68%; /* #60a5fa */
-    --primary-foreground: 210 4% 6%;
-    --secondary: 145 67% 48%; /* #34d399 */
-    --secondary-foreground: 210 4% 6%;
-    --muted: 220 14% 58%;
-    --muted-foreground: 220 14% 58%;
-    --accent: 261 51% 63%;
-    --accent-foreground: 210 4% 6%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 14% 46%;
-    --input: 220 14% 46%;
-    --ring: 213 90% 68%;
+    --background: 40 33% 98%;
+    --foreground: 25 16% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 16% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 16% 16%;
+
+    /* Muted evergreen — the primary voice of the site. */
+    --primary: 172 34% 30%;
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 38 26% 94%;
+    --secondary-foreground: 25 16% 22%;
+
+    --muted: 38 24% 95%;
+    --muted-foreground: 28 8% 42%;
+
+    /* `accent` stays a quiet surface (shadcn uses it for hover states). */
+    --accent: 38 26% 93%;
+    --accent-foreground: 25 16% 22%;
+
+    /* Warm clay, used sparingly for emphasis. */
+    --highlight: 20 54% 50%;
+    --highlight-foreground: 40 33% 98%;
+
+    --destructive: 5 62% 48%;
+    --destructive-foreground: 40 33% 98%;
+
+    --border: 34 20% 89%;
+    --input: 34 20% 86%;
+    --ring: 172 34% 30%;
+
     --radius: 0.75rem;
   }
- 
-  .dark {
-    --background: 220 18% 13%;
-    --foreground: 210 20% 98%;
-    --card: 220 18% 13%;
-    --card-foreground: 210 20% 98%;
-    --popover: 220 18% 13%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 213 90% 68%;
-    --primary-foreground: 220 18% 13%;
-    --secondary: 160 84% 39%;
-    --secondary-foreground: 220 18% 13%;
-    --muted: 220 14% 46%;
-    --muted-foreground: 220 14% 46%;
-    --accent: 261 51% 63%;
-    --accent-foreground: 220 18% 13%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 14% 46%;
-    --input: 220 14% 46%;
-    --ring: 213 90% 68%;
-  }
 
-  .light {
-    --background: 210 20% 98%; /* light background */
-    --foreground: 217 12% 12%; /* dark text */
-    --card: 0 0% 100%;
-    --card-foreground: 217 12% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 217 12% 12%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 210 90% 60%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 220 14% 46%;
-    --muted-foreground: 220 14% 46%;
-    --accent: 261 51% 63%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 14% 46%;
-    --input: 220 14% 46%;
-    --ring: 217 91% 60%;
+  .dark {
+    --background: 30 8% 10%;
+    --foreground: 40 18% 91%;
+
+    --card: 30 7% 13%;
+    --card-foreground: 40 18% 91%;
+
+    --popover: 30 7% 13%;
+    --popover-foreground: 40 18% 91%;
+
+    --primary: 170 36% 58%;
+    --primary-foreground: 30 8% 10%;
+
+    --secondary: 30 6% 18%;
+    --secondary-foreground: 40 18% 91%;
+
+    --muted: 30 6% 17%;
+    --muted-foreground: 35 8% 64%;
+
+    --accent: 30 6% 19%;
+    --accent-foreground: 40 18% 91%;
+
+    --highlight: 20 62% 63%;
+    --highlight-foreground: 30 8% 10%;
+
+    --destructive: 5 58% 55%;
+    --destructive-foreground: 40 18% 91%;
+
+    --border: 30 6% 23%;
+    --input: 30 6% 26%;
+    --ring: 170 36% 58%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-medium tracking-tight;
+  }
+
+  /* Keep anchored sections clear of the sticky header. */
+  :target {
+    scroll-margin-top: 6rem;
   }
 }
 
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+@layer utilities {
+  /* Small caps label used above every section heading. */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

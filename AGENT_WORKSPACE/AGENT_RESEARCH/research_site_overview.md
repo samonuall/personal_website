@@ -1,29 +1,24 @@
 # Repository map (portfolio site)
-- Purpose: Next.js 14 app showcasing Sam O'Nuallain portfolio with landing page, projects grid, theme toggle, and modal dialogs; experiences are still data-backed but no longer have their own page.
-- Key dirs: `app` (route entry points `page.tsx`, `projects/page.tsx`; global styles/layout/fonts), `components` (UI building blocks including sliders, cards, nav, theme toggle, scroll animation), `data` (static sources for experiences/projects/technologies), `lib/utils.ts` (Tailwind class merger), `public` (images/icons referenced in data).
-- Entry points: `app/page.tsx` (home), `app/projects/page.tsx` (projects grid with dialogs); `app/layout.tsx` wires global metadata/styles and wraps pages.
-- Running: `npm run dev` for local server; `npm test` uses Jest + ts-jest + Testing Library targeting `testing/**/*.test.tsx`; env flag `NEXT_PUBLIC_PRIVATE_MODE` would alter experience card interactivity if reused.
+- Purpose: Next.js 14 portfolio for Sam O'Nuallain — light "warm paper" design, a home page and a projects page. Deploys to samonuall.vercel.app on push to `main`.
+- Key dirs: `app` (routes, global styles, layout), `components` (section components + `components/ui` primitives), `data` (all content), `lib/utils.ts` (Tailwind class merger), `public` (images, PDFs, `public/diagrams/*.svg`).
+- Entry points: `app/page.tsx` (home, server component), `app/projects/page.tsx` (client component — owns hash routing), `app/layout.tsx` (fonts, metadata, pre-paint theme script).
 
 # Execution & data flow
-- Home (`app/page.tsx`): renders `BackgroundPattern`, `Nav`, hero with CTA buttons for contacting via email and viewing projects, then `StoryScroller` (mixes select experiences + projects with metrics), `SkillsSection`, and footer with `SocialLinks`. Uses `ScrollAnimation` wrappers and `Analytics` client component.
-- Projects page (`app/projects/page.tsx`): hash/scroll logic with refs and click dispatch; renders grid of `ProjectCard`s from `projects` data; CTA button links to GitHub profile.
-- `ExperienceCard` (`components/experience-card.tsx`): unused now that the experience page is gone, but still opens a Radix `Dialog` showing full description unless `NEXT_PUBLIC_PRIVATE_MODE==='true'`; `ref` forwarded to card container.
-- `ProjectCard` (`components/project-card.tsx`): card opens dialog showing image, description, tech chips, optional GitHub/link buttons, and special report button for project id `2`; uses local `isOpen` state.
-- `ScrollAnimation`: IntersectionObserver toggles `visible` class + transforms when element enters viewport; delays configurable.
-- Theme handling: `components/theme-toggle.tsx` toggles `light` class on `document.documentElement`, persisting to `localStorage`; defaults to dark (no `light`).
-- Data structures: `data/experiences.ts` defines `Experience{id,title,company,contractType,location,dateRange,description[]}`; `data/projects.ts` defines `Project{id,title,description,image,technologies[],github?,link?}`; `data/technologies.ts` defines `Technology{name,icon,category}` plus `categories` labels.
+- Home (`app/page.tsx`): `BackgroundPattern` → `Nav` → `Hero` → experience `Section` + `ExperienceTimeline` → `FeaturedProjects` → `SkillsSection` → `ResearchSection` → `SiteFooter`. Fully static; the only client components are `ProjectRow` and `ThemeToggle`.
+- Projects (`app/projects/page.tsx`): renders every `Project` as a controlled `ProjectRow`. `expandedId` state + `rowRefs` drive hash deep-linking (`/projects#autoindex` expands and scrolls); `history.replaceState` keeps the hash in sync and clears it on collapse. Home's `FeaturedProjects` uses the same component uncontrolled, with `featured-` prefixed ids so the two pages' anchors don't collide.
+- Theme: `components/theme-script.tsx` sets `.dark` on `<html>` before paint from `localStorage.theme`, falling back to `prefers-color-scheme`. `ThemeToggle` reads that class on mount and toggles it. Light is the default.
+- Data shapes:
+  - `Project{id,title,tagline,description,highlights?,year,technologies[],media?,links?}` — `media` is `{type:'image'|'video',src,poster?,caption?}`; `links[]` is `{kind:'github'|'paper'|'site'|'demo',href,label?}` and `ProjectRow` maps `kind` to an icon/label/button variant. `featuredProjectIds` selects what the home page shows.
+  - `Experience{...,technologies?}`, `Publication{title,authors,venue,year,href?}`, `Education{school,degree,dateRange,note?}`, `SkillGroup{label,skills[{name,icon?}]}`.
 
 # Change surface index
-- `data/experiences.ts` / `data/projects.ts` / `data/technologies.ts`: primary content sources; edits change displayed cards/grids and slider content.
-- `app/page.tsx`: orchestrates home layout, CTA links, and embeds scroller/skills sections; adjust structure/hero/sections here.
-- `components/experience-slider.tsx` & `components/project-slider.tsx`: control horizontal preview lists and scroll behavior; experience slider is currently unused and no longer navigates anywhere.
-- `app/projects/page.tsx`: manages hash scroll-to-card and click dispatch that opens dialogs; sensitive to ref wiring and ids matching data; behavior tied to `ProjectCard` dialogs.
-- `components/experience-card.tsx` & `components/project-card.tsx`: dialog content and interactivity; depend on Radix dialog primitives, environment flag (`NEXT_PUBLIC_PRIVATE_MODE`), and data shapes; widely reused if reintroduced.
-- `components/theme-toggle.tsx` and `app/globals.css`: govern theme class handling and CSS variables; altering affects entire site styling.
-- Testing: `testing/unit_tests/project-card.test.tsx` covers `ProjectCard` rendering/dialog/links; changes to structure or labels may require test updates; Jest config (`jest.config.mjs`, `jest.setup.js`) mocks `next/image`.
+- Adding a project/role/paper/skill: edit the matching file in `data/` only. To feature a project on the home page, add its id to `featuredProjectIds` in `data/projects.ts`.
+- Restyling globally: `app/globals.css` (HSL tokens for light + `.dark`) and `tailwind.config.js` (color mapping, `shadow-card`/`shadow-lift`, font vars). These two files govern the whole site's look.
+- Section spacing/headings: `components/ui/section.tsx`. Card shape: `components/ui/entry-card.tsx`. Pills: `components/ui/tag.tsx`.
+- Expand/collapse behavior + media/link rendering: `components/project-row.tsx` and its CSS module.
+- Assets: project figures are hand-authored SVGs in `public/diagrams/` (paper-toned so they read in both themes); PDFs sit at the root of `public/` and are linked via a `links[]` entry of kind `paper`.
 
-# Open questions
-- Should `ExperienceCard` and `experience-slider` be repurposed or removed now that the dedicated experience route is gone?
-- Expected behavior for `NEXT_PUBLIC_PRIVATE_MODE` on project cards or other sections—currently only experience dialogs would lock down details if used.
-- Any required preloading or hosting constraints for images/files referenced in `public` (e.g., `/poker_bot_report.pdf`, `/profile.jpg`, icons)?
-- Are hash-triggered auto-clicks meant to always open dialogs on navigation, or just scroll without opening?
+# Notes / open questions
+- `data/experiences.ts` lists the CIIR researcher role as ending June 2025 (matching `AGENT_WORKSPACE/resume.md`). If that research is ongoing, change the `dateRange` back to "Present".
+- `npm run lint` and `npm test` are both broken from pre-existing dependency/config drift (eslint 9 vs eslint-config-next 16; jest pointing at a deleted `testing/` dir). `npm run build` is the working check.
+- `NEXT_PUBLIC_PRIVATE_MODE` is referenced in `.env.example` but no longer read by any component — the experience dialogs it gated were removed.
